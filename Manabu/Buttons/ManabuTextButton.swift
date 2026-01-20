@@ -10,6 +10,9 @@ import UIKit
 class ManabuTextButton: UIButton {
     
     var text: String?
+    var isCorrect: Bool?
+    
+    private var defaultFontSize: CGFloat = 50
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,21 +23,33 @@ class ManabuTextButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(title: String, color: UIColor) {
+    convenience init(title: String, color: UIColor, fontSize: CGFloat) {
         self.init(frame: .zero)
-        set(title: title, color: color)
+        set(title: title, color: color, fontSize: fontSize)
     }
     
     private func configure() {
-        configuration = .tinted()
+        var config = UIButton.Configuration.tinted()
+        
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: self.defaultFontSize, weight: .semibold)
+            return outgoing
+        }
+        
+        configuration = config
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    final func set(title: String, color: UIColor) {
+    final func set(title: String, color: UIColor, fontSize: CGFloat) {
         configuration?.baseBackgroundColor = color
         configuration?.baseForegroundColor = .label
         configuration?.title = title
         
         text = title
+    }
+    
+    final func setColor(_ color: UIColor) {
+        configuration?.baseBackgroundColor = color
     }
 }

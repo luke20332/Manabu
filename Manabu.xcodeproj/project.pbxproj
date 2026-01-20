@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A303F7B32F1E48130083DC65 /* Exceptions for "Manabu" folder in "Manabu" target */ = {
+		A303F8742F1E9DC50083DC65 /* Exceptions for "Manabu" folder in "Manabu" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		A303F78A2F1E48110083DC65 /* Manabu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A303F7B32F1E48130083DC65 /* Exceptions for "Manabu" folder in "Manabu" target */,
+				A303F8742F1E9DC50083DC65 /* Exceptions for "Manabu" folder in "Manabu" target */,
 			);
 			path = Manabu;
 			sourceTree = "<group>";

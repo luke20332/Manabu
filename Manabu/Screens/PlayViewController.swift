@@ -22,6 +22,7 @@ class PlayViewController: UIViewController {
     
     var prompt: String = ""
     var answer: String = ""
+    var correctButton: ManabuTextButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +45,10 @@ class PlayViewController: UIViewController {
         guard let button = sender as? ManabuTextButton,
               let guess = button.text
         else {
-            print("fail")
             return
         }
         
-        checkAnswer(guess)
+        checkAnswer(guess, sender: button)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.updateValues()
@@ -115,20 +115,21 @@ private extension PlayViewController {
         
         options.forEach {
             if counter == randomIndex {
-                $0.set(title: answerValue, color: .systemBackground)
+                $0.set(title: answerValue, color: .systemBackground, fontSize: 50)
+                $0.isCorrect = true
+                correctButton = $0
             } else {
-                $0.set(title: hiraganaDict.randomElement()!.value, color: .systemBackground)
+                $0.set(title: hiraganaDict.randomElement()!.value, color: .systemBackground, fontSize: 50)
+                $0.isCorrect = false
             }
             counter += 1
         }
     }
     
-    func checkAnswer(_ guess: String) {
-        if guess == hiraganaDict[prompt] {
-            view.backgroundColor = .green
-        } else {
-            view.backgroundColor = .red
+    func checkAnswer(_ guess: String, sender: ManabuTextButton) {
+        if guess != hiraganaDict[prompt] {
+            sender.setColor(.systemRed)
         }
+        correctButton?.setColor(.systemGreen)
     }
-    
 }
