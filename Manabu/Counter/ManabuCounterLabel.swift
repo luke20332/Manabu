@@ -28,13 +28,7 @@ class ManabuCounterLabel: UILabel {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func increment() {
-        count += 1
-        text = "Streak: \(count)"
-    }
-    
-    func reset() {
-        count = 0
-        isHidden = true
+    func setCount(_ count: Int) {
+        text = "🔥 Streak: \(count)"
     }
 }

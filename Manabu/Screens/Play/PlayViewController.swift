@@ -8,6 +8,7 @@
 import UIKit
 
 class PlayViewController: UIViewController {
+    private let viewModel = PlayViewModel()
     
     let streakCounterView = ManabuCounterLabel()
     
@@ -21,19 +22,11 @@ class PlayViewController: UIViewController {
     let optionTwo = ManabuTextButton()
     let optionThree = ManabuTextButton()
     let optionFour = ManabuTextButton()
-    
-    var prompt: String = ""
-    var answer: String = ""
-    private var correctButton: ManabuTextButton?
-    
-    private var streak: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.addSubview(streakCounterView)
-        streakCounterView.isHidden = true
-        
         view.addSubview(characterView)
         view.addSubview(containerStackView)
         
@@ -46,21 +39,9 @@ class PlayViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateValues()
-    }
-    
-    @objc func buttonTapped(_ sender: UIButton) {
-        guard let button = sender as? ManabuTextButton,
-              let guess = button.text
-        else {
-            return
-        }
-        
-        checkAnswer(guess, sender: button)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.updateValues()
-        }
+        viewModel.startNewRound()
+        viewModel.resetStreakCounter()
+        bindViewModel()
     }
 }
 
@@ -110,52 +91,51 @@ private extension PlayViewController {
         bottomStackView.addArrangedSubview(optionThree)
         bottomStackView.addArrangedSubview(optionFour)
         
-        optionOne.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        optionTwo.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        optionThree.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        optionFour.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        addTargets(optionOne, optionTwo, optionThree, optionFour)
     }
     
-    func updateValues() {
-        if streak > 2 {
-            streakCounterView.isHidden = false
+    func addTargets(_ options: UIButton...) {
+        for option in options {
+            option.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         }
+    }
+    
+    func bindViewModel() {
+        characterView.text = viewModel.prompt
         
-        view.backgroundColor = .systemBackground
-        let randomIndex = Int(arc4random_uniform(4))
-        var counter = 0
-        let (answerKey, answerValue) = hiraganaDict.randomElement()!
+        streakCounterView.isHidden = !viewModel.shouldShowStreak
+        streakCounterView.setCount(viewModel.streak)
         
-        prompt = answerKey
-        answer = answerValue
+        let buttons = [optionOne, optionTwo, optionThree, optionFour]
         
-        let options = [optionOne, optionTwo, optionThree, optionFour]
-        
-        characterView.text = answerKey
-        
-        options.forEach {
-            if counter == randomIndex {
-                $0.set(title: answerValue, color: .systemBackground, fontSize: 50)
-                $0.isCorrect = true
-                correctButton = $0
-            } else {
-                $0.set(title: hiraganaDict.randomElement()!.value, color: .systemBackground, fontSize: 50)
-                $0.isCorrect = false
+        for (button, option) in zip(buttons, viewModel.options) {
+            button.text = option.title
+            button.isCorrect = option.isCorrect
+            button.set(title: option.title, color: .systemBackground, fontSize: 20)
+            
+            switch option.state {
+            case .normal:
+                button.setColor(.systemBackground)
+            case .correct:
+                button.setColor(.systemGreen)
+            case .incorrect:
+                button.setColor(.systemRed)
             }
-            counter += 1
         }
     }
     
-    func checkAnswer(_ guess: String, sender: ManabuTextButton) {
-        if guess != hiraganaDict[prompt] {
-            sender.setColor(.systemRed)
-            streak = 1
-            streakCounterView.reset()
-        } else {
-            streak += 1
-            streakCounterView.increment()
-        }
+    @objc func buttonTapped(_ sender: UIButton) {
+        // index is the option which corresponds to the sent button
+        guard let button = sender as? ManabuTextButton,
+              let index = [optionOne, optionTwo, optionThree, optionFour].firstIndex(of: button)
+        else { return }
         
-        correctButton?.setColor(.systemGreen)
+        viewModel.selectOption(id: index)
+        bindViewModel()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.viewModel.startNewRound()
+            self?.bindViewModel()
+        }
     }
 }
