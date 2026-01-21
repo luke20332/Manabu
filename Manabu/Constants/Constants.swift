@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 enum SFSymbols {
-    static let learn = UIImage(systemName: "book")
+    static let home = UIImage(systemName: "house.lodge")
+    static let learn = UIImage(systemName: "text.book.closed")
     static let play = UIImage(systemName: "flag.pattern.checkered")
+}
+
+enum Images {
+    static let logo = UIImage(systemName: "AppIcon")
+    static let logo1 = UIImage(resource: .init(name: "AppIcon", bundle: .main))
 }

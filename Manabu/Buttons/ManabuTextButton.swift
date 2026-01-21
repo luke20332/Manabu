@@ -8,10 +8,6 @@
 import UIKit
 
 class ManabuTextButton: UIButton {
-    
-    var text: String?
-    var isCorrect: Bool?
-    
     private var defaultFontSize: CGFloat = 50
     
     override init(frame: CGRect) {
@@ -23,9 +19,9 @@ class ManabuTextButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(title: String, color: UIColor, fontSize: CGFloat) {
+    convenience init(title: String, color: UIColor, fontSize: CGFloat, systemImageName: String) {
         self.init(frame: .zero)
-        set(title: title, color: color, fontSize: fontSize)
+        set(title: title, color: color, fontSize: fontSize, systemImageName: systemImageName)
     }
     
     private func configure() {
@@ -41,12 +37,20 @@ class ManabuTextButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
-    final func set(title: String, color: UIColor, fontSize: CGFloat) {
+    final func set(title: String, color: UIColor, fontSize: CGFloat, systemImageName: String?) {
         configuration?.baseBackgroundColor = color
         configuration?.baseForegroundColor = .label
         configuration?.title = title
         
-        text = title
+        titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
+
+        guard let systemImageName else {
+            return
+        }
+        
+        configuration?.image = UIImage(systemName: systemImageName)
+        configuration?.imagePadding = 6
+        configuration?.imagePlacement = .leading
     }
     
     final func setColor(_ color: UIColor) {

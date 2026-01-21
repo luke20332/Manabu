@@ -8,6 +8,10 @@
 import UIKit
 
 class PlayViewController: UIViewController {
+    
+    enum Constants {
+        static let buttonFontSize: CGFloat = 50
+    }
     private let viewModel = PlayViewModel()
     
     let streakCounterView = ManabuCounterLabel()
@@ -109,9 +113,7 @@ private extension PlayViewController {
         let buttons = [optionOne, optionTwo, optionThree, optionFour]
         
         for (button, option) in zip(buttons, viewModel.options) {
-            button.text = option.title
-            button.isCorrect = option.isCorrect
-            button.set(title: option.title, color: .systemBackground, fontSize: 20)
+            button.set(title: option.title, color: .systemBackground, fontSize: Constants.buttonFontSize, systemImageName: nil)
             
             switch option.state {
             case .normal:

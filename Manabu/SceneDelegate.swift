@@ -25,15 +25,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createTabBar() -> UITabBarController {
         let tabBar = UITabBarController()
         UITabBar.appearance().barTintColor = .systemGreen
-        tabBar.viewControllers = [createLearnNavigationController(), createPlayNavigationController()]
+        tabBar.viewControllers = [
+            createHomeNavigationController(),
+            createLearnNavigationController(),
+            createPlayNavigationController()
+        ]
         
         return tabBar
+    }
+    
+    func createHomeNavigationController() -> UINavigationController {
+        let homeVC = HomeViewController()
+        homeVC.title = "Home"
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: SFSymbols.home, tag: 0)
+        
+        return UINavigationController(rootViewController: homeVC)
     }
     
     func createPlayNavigationController() -> UINavigationController {
         let playVC = PlayViewController()
         playVC.title = "Play"
-        playVC.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 1)
+        playVC.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
         
         return UINavigationController(rootViewController: playVC)
     }
@@ -41,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createLearnNavigationController() -> UINavigationController {
         let learnVC = LearnViewController()
         learnVC.title = "Learn"
-        learnVC.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 0)
+        learnVC.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
         
         return UINavigationController(rootViewController: learnVC)
     }
