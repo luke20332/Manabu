@@ -67,7 +67,6 @@ private extension HomeViewController {
             translationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             translationStackView.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
     }
     
     func configureTabStackView() {

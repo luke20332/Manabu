@@ -37,6 +37,16 @@ final class PlayViewModel {
         let correctIndex = Int.random(in: 0..<numberOfOptions)
         correctOptionID = correctIndex
         
+        var incorrectOptions = Set<String>()
+        
+        while incorrectOptions.count < numberOfOptions - 1 {
+            let randomElement = hiraganaDict.randomElement()!.value
+            
+            guard randomElement != correctAnswer else { continue }
+            
+            incorrectOptions.insert(randomElement)
+        }
+        
         // options is an array of PlayOptions, each with an index, title, and correct bool
         options = (0..<numberOfOptions).map { index in
             if index == correctIndex {
@@ -49,7 +59,7 @@ final class PlayViewModel {
             } else {
                 return PlayOption(
                     id: index,
-                    title: hiraganaDict.randomElement()!.value,
+                    title: incorrectOptions.removeFirst(),
                     isCorrect: false,
                     state: .normal
                 )
