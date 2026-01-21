@@ -9,6 +9,8 @@ import UIKit
 
 class PlayViewController: UIViewController {
     
+    let streakCounterView = ManabuCounterLabel()
+    
     let characterView = ManabuTextLabel(fontSize: 160)
     
     let topStackView = UIStackView()
@@ -22,14 +24,20 @@ class PlayViewController: UIViewController {
     
     var prompt: String = ""
     var answer: String = ""
-    var correctButton: ManabuTextButton?
+    private var correctButton: ManabuTextButton?
+    
+    private var streak: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(streakCounterView)
+        streakCounterView.isHidden = true
+        
         view.addSubview(characterView)
         view.addSubview(containerStackView)
         
+        configureStreakCounter()
         configureCharacter()
         configureContainerStackView()
         configureOptions()
@@ -57,6 +65,14 @@ class PlayViewController: UIViewController {
 }
 
 private extension PlayViewController {
+    func configureStreakCounter() {
+        NSLayoutConstraint.activate([
+            streakCounterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            streakCounterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            streakCounterView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
     func configureCharacter() {
         NSLayoutConstraint.activate([
             characterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -101,6 +117,10 @@ private extension PlayViewController {
     }
     
     func updateValues() {
+        if streak > 2 {
+            streakCounterView.isHidden = false
+        }
+        
         view.backgroundColor = .systemBackground
         let randomIndex = Int(arc4random_uniform(4))
         var counter = 0
@@ -129,7 +149,13 @@ private extension PlayViewController {
     func checkAnswer(_ guess: String, sender: ManabuTextButton) {
         if guess != hiraganaDict[prompt] {
             sender.setColor(.systemRed)
+            streak = 1
+            streakCounterView.reset()
+        } else {
+            streak += 1
+            streakCounterView.increment()
         }
+        
         correctButton?.setColor(.systemGreen)
     }
 }
