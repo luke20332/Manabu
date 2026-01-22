@@ -1,5 +1,5 @@
 //
-//  GuessRomanjiViewController.swift
+//  GuessHiraganaViewController.swift
 //  Manabu
 //
 //  Created by Luke on 19/01/2026.
@@ -7,12 +7,14 @@
 
 import UIKit
 
-class GuessRomanjiViewController: UIViewController {
+class GuessHiraganaViewController: UIViewController, Coordinating {
+    var coordinator: Coordinator?
+    
     enum Constants {
         static let buttonFontSize: CGFloat = 50
     }
     
-    private let viewModel = GuessRomanjiViewModel()
+    private let viewModel = GuessHiraganaViewModel()
     
     let streakCounterView = ManabuCounterLabel()
     
@@ -29,6 +31,8 @@ class GuessRomanjiViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         view.addSubview(streakCounterView)
         view.addSubview(characterView)
@@ -49,7 +53,7 @@ class GuessRomanjiViewController: UIViewController {
     }
 }
 
-private extension GuessRomanjiViewController {
+private extension GuessHiraganaViewController {
     func configureStreakCounter() {
         NSLayoutConstraint.activate([
             streakCounterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

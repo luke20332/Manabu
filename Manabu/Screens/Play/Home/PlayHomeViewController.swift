@@ -60,7 +60,7 @@ extension PlayHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // to do
+        coordinator?.eventOccurred(with: PlayEvent.guessHiraganaTapped)
     }
 }
 

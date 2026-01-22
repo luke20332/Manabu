@@ -8,20 +8,36 @@
 import Foundation
 import UIKit
 
-enum Event {
-    case playButtonTapped
-    case learnButtonTapped
-    case homeButtonTapped
-}
-
 protocol Coordinator {
     var navigationController: UINavigationController? { get set }
     var children: [Coordinator]? { get set }
     
-    func eventOccurred(with type: Event)
+    func eventOccurred(with type: CoordinatorEvent)
     func start()
 }
 
 protocol Coordinating {
     var coordinator: Coordinator? { get set }
+}
+
+protocol CoordinatorEvent {}
+
+enum MainEvent: CoordinatorEvent {
+    case playButtonTapped
+    case learnButtonTapped
+    case homeButtonTapped
+}
+
+enum PlayEvent: CoordinatorEvent {
+    case guessHiraganaTapped
+    case guessRomanjiTapped
+    case drawTapped
+    case listenTapped
+}
+
+enum LearnEvent: CoordinatorEvent {
+    case hirganaFlashCardsTapped
+    case romanjiFlashCardsTapped
+    case listenTapped
+    case drawTapped
 }
