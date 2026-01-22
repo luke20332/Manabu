@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, Coordinating {
+    var coordinator: Coordinator?
     
     let titleView = ManabuTextLabel(fontSize: 100)
     
@@ -22,6 +23,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         configureTitleView()
         configureTranslationStackView()

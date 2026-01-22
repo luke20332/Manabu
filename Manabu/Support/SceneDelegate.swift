@@ -11,13 +11,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        
+//        window = UIWindow(windowScene: windowScene)
+//        window?.windowScene = windowScene
+//        window?.rootViewController = createTabBar()
+//        window?.makeKeyAndVisible()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: windowScene)
-        window?.windowScene = windowScene
-        window?.rootViewController = createTabBar()
-        window?.makeKeyAndVisible()
+        let coordinator = MainCoordinator()
         
+        let navVC = UINavigationController()
+        
+        let window = UIWindow(windowScene: windowScene)
+        
+        coordinator.navigationController = navVC
+        window.rootViewController = navVC
+        window.makeKeyAndVisible()
+        
+        self.window = window
+        
+        coordinator.start()
     }
     
     func createTabBar() -> UITabBarController {

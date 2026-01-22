@@ -9,13 +9,17 @@ import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
-    var navigationController: UINavigationController = .init()
+    var navigationController: UINavigationController?
     
     func eventOccurred(with type: Event) {
         //
     }
     
     func start() {
-        //
+        var vc: UIViewController & Coordinating = HomeViewController()
+        
+        vc.coordinator = self
+        
+        navigationController?.setViewControllers([vc], animated: false)
     }
 }
