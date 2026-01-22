@@ -23,11 +23,7 @@ class MainCoordinator: Coordinator {
         case .playButtonTapped:
             goToPlay()
         case .learnButtonTapped:
-            var learnVC: UIViewController & Coordinating = LearnViewController()
-            learnVC.coordinator = self
-            
-            navigationController?.pushViewController(learnVC, animated: true)
-            
+            goToLearn()
         case .homeButtonTapped:
             var homeVC: UIViewController & Coordinating = HomeViewController()
             homeVC.coordinator = self
@@ -54,5 +50,15 @@ class MainCoordinator: Coordinator {
         children?.append(playCoordinator)
         
         playCoordinator.start()
+    }
+    
+    func goToLearn() {
+        guard let navigationController else { return }
+        let learnCoordinator = LearnCoordinator(navigationController: navigationController)
+        learnCoordinator.parentCoordinator = self
+        
+        children?.append(learnCoordinator)
+        
+        learnCoordinator.start()
     }
 }

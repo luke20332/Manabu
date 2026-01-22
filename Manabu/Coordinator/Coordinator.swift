@@ -8,6 +8,18 @@
 import Foundation
 import UIKit
 
+protocol Coordinator {
+    var navigationController: UINavigationController? { get set }
+    var children: [Coordinator]? { get set }
+    
+    func eventOccurred(with type: CoordinatorEvent)
+    func start()
+}
+
+protocol Coordinating {
+    var coordinator: Coordinator? { get set }
+}
+
 protocol CoordinatorEvent {}
 
 enum MainEvent: CoordinatorEvent {
@@ -23,14 +35,9 @@ enum PlayEvent: CoordinatorEvent {
     case listenTapped
 }
 
-protocol Coordinator {
-    var navigationController: UINavigationController? { get set }
-    var children: [Coordinator]? { get set }
-    
-    func eventOccurred(with type: CoordinatorEvent)
-    func start()
-}
-
-protocol Coordinating {
-    var coordinator: Coordinator? { get set }
+enum LearnEvent: CoordinatorEvent {
+    case hirganaFlashCardsTapped
+    case romanjiFlashCardsTapped
+    case listenTapped
+    case drawTapped
 }
