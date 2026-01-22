@@ -7,12 +7,12 @@
 
 import Foundation
 
-final class PlayViewModel {
+final class GuessRomanjiViewModel {
     
     // MARK: - VM Outputs
     private(set) var streak: Int = 0
     private(set) var prompt: String = ""
-    private(set) var options: [PlayOption] = []
+    private(set) var options: [GuessPlayOption] = []
     private(set) var shouldShowStreak: Bool = false
     
     // MARK: - Private State
@@ -50,14 +50,14 @@ final class PlayViewModel {
         // options is an array of PlayOptions, each with an index, title, and correct bool
         options = (0..<numberOfOptions).map { index in
             if index == correctIndex {
-                return PlayOption(
+                return GuessPlayOption(
                     id: index,
                     title: correctAnswer,
                     isCorrect: true,
                     state: .normal
                 )
             } else {
-                return PlayOption(
+                return GuessPlayOption(
                     id: index,
                     title: incorrectOptions.removeFirst(),
                     isCorrect: false,
@@ -72,7 +72,6 @@ final class PlayViewModel {
               let correctID = correctOptionID else { return }
                 
         // check the answer - assign streak vals and assign state to playoptions
-        
         if id == correctID {
             streak += 1
             options[selectedIndex].state = .correct

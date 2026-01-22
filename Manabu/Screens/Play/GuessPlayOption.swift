@@ -1,11 +1,11 @@
 //
-//  PlayOption.swift
+//  GuessPlayOption.swift
 //  Manabu
 //
 //  Created by Luke on 21/01/2026.
 //
 
-struct PlayOption {
+struct GuessPlayOption {
     let id: Int
     let title: String
     let isCorrect: Bool

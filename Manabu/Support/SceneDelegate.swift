@@ -8,9 +8,7 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -43,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createPlayNavigationController() -> UINavigationController {
-        let playVC = PlayViewController()
+        let playVC = PlayHomeViewController()
         playVC.title = "Play"
         playVC.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
         

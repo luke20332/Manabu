@@ -12,9 +12,12 @@ enum SFSymbols {
     static let home = UIImage(systemName: "house.lodge")
     static let learn = UIImage(systemName: "text.book.closed")
     static let play = UIImage(systemName: "flag.pattern.checkered")
+    
+    static let draw = UIImage(systemName: "pencil.and.scribble")!
+    static let listen = UIImage(systemName: "ear")!
 }
 
 enum Images {
-    static let logo = UIImage(systemName: "AppIcon")
-    static let logo1 = UIImage(resource: .init(name: "AppIcon", bundle: .main))
+    static let a_hiragana = UIImage(named: "a_hiragana")!
+    static let a_english = UIImage(named: "a_english")!
 }

@@ -1,5 +1,5 @@
 //
-//  PlayViewController.swift
+//  GuessRomanjiViewController.swift
 //  Manabu
 //
 //  Created by Luke on 19/01/2026.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-class PlayViewController: UIViewController {
-    
+class GuessRomanjiViewController: UIViewController {
     enum Constants {
         static let buttonFontSize: CGFloat = 50
     }
-    private let viewModel = PlayViewModel()
+    
+    private let viewModel = GuessRomanjiViewModel()
     
     let streakCounterView = ManabuCounterLabel()
     
@@ -49,7 +49,7 @@ class PlayViewController: UIViewController {
     }
 }
 
-private extension PlayViewController {
+private extension GuessRomanjiViewController {
     func configureStreakCounter() {
         NSLayoutConstraint.activate([
             streakCounterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
