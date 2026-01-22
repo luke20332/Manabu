@@ -8,17 +8,20 @@
 import Foundation
 import UIKit
 
-class MainCoordinator: Coordinator {
+class MainCoordinator: Coordinator {    
     var navigationController: UINavigationController?
+    var children: [Coordinator]? = []
     
-    func eventOccurred(with type: Event) {
+    func eventOccurred(with type: any CoordinatorEvent) {
+        if let mainEvent = type as? MainEvent {
+            handleMainEvent(mainEvent)
+        }
+    }
+    
+    func handleMainEvent(_ type: MainEvent) {
         switch type {
         case .playButtonTapped:
-            var playVC: UIViewController & Coordinating = PlayHomeViewController()
-            playVC.coordinator = self
-            
-            navigationController?.pushViewController(playVC, animated: true)
-            
+            goToPlay()
         case .learnButtonTapped:
             var learnVC: UIViewController & Coordinating = LearnViewController()
             learnVC.coordinator = self
@@ -34,10 +37,22 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        var vc: UIViewController & Coordinating = HomeViewController()
+        guard let navigationController else { return }
         
+        var vc: UIViewController & Coordinating = HomeViewController()
         vc.coordinator = self
         
-        navigationController?.setViewControllers([vc], animated: false)
+        navigationController.setViewControllers([vc], animated: false)
+    }
+    
+    func goToPlay() {
+        guard let navigationController else { return }
+        let playCoordinator = PlayCoordinator.init(navigationController: navigationController)
+        
+        playCoordinator.parentCoordinator = self
+        
+        children?.append(playCoordinator)
+        
+        playCoordinator.start()
     }
 }

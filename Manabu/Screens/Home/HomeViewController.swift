@@ -102,10 +102,10 @@ private extension HomeViewController {
 
 private extension HomeViewController {
     @objc func learnButtonTapped() {
-        coordinator?.eventOccurred(with: .learnButtonTapped)
+        coordinator?.eventOccurred(with: MainEvent.learnButtonTapped)
     }
     
     @objc func playButtonTapped() {
-        coordinator?.eventOccurred(with: .playButtonTapped)
+        coordinator?.eventOccurred(with: MainEvent.playButtonTapped)
     }
 }

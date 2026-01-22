@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GuessRomanjiViewModel {
+final class GuessHiraganaViewModel {
     
     // MARK: - VM Outputs
     private(set) var streak: Int = 0
