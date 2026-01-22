@@ -101,11 +101,11 @@ private extension HomeViewController {
 }
 
 private extension HomeViewController {
-    @IBAction func learnButtonTapped() {
-        tabBarController?.selectedIndex = 1
+    @objc func learnButtonTapped() {
+        coordinator?.eventOccurred(with: .learnButtonTapped)
     }
     
-    @IBAction func playButtonTapped() {
-        tabBarController?.selectedIndex = 2
+    @objc func playButtonTapped() {
+        coordinator?.eventOccurred(with: .playButtonTapped)
     }
 }
