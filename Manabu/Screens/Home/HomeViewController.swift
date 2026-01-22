@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, Coordinating {
+    var coordinator: Coordinator?
     
     let titleView = ManabuTextLabel(fontSize: 100)
     
@@ -22,6 +23,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
         
         configureTitleView()
         configureTranslationStackView()
@@ -98,11 +101,11 @@ private extension HomeViewController {
 }
 
 private extension HomeViewController {
-    @IBAction func learnButtonTapped() {
-        tabBarController?.selectedIndex = 1
+    @objc func learnButtonTapped() {
+        coordinator?.eventOccurred(with: .learnButtonTapped)
     }
     
-    @IBAction func playButtonTapped() {
-        tabBarController?.selectedIndex = 2
+    @objc func playButtonTapped() {
+        coordinator?.eventOccurred(with: .playButtonTapped)
     }
 }

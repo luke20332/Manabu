@@ -7,7 +7,8 @@
 
 import UIKit
 
-class PlayHomeViewController: UIViewController {
+class PlayHomeViewController: UIViewController, Coordinating {
+    var coordinator: Coordinator?
     
     var tableView = UITableView()
     var games: [GameMode] = []
