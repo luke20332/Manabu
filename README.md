@@ -4,7 +4,7 @@ A small project iOS application built with Swift for learning Japanese language 
 
 <p align="center">
   <img src="https://github.com/luke20332/Manabu/blob/main/images/home_screen.png" width="30%" />
-  <img src="https://github.com/luke20332/Manabu/blob/main/images/guess_hiragana_streak.png" width="30%" />
+  <img src="https://github.com/luke20332/Manabu/blob/main/images/guess_hiragana_streak_2.png" width="30%" />
   <img src="https://github.com/luke20332/Manabu/blob/main/images/play_options.png" width="30%" />
 </p>
 
