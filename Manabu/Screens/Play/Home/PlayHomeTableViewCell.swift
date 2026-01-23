@@ -52,7 +52,7 @@ class PlayHomeTableViewCell: UITableViewCell {
     func configureHighScoreLabel() {
         highScoreLabel.numberOfLines = 0
         highScoreLabel.adjustsFontSizeToFitWidth = true
-        highScoreLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        highScoreLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
     }
     
     func setImageConstraints() {
