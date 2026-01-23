@@ -2,11 +2,11 @@
 
 A small project iOS application built with Swift for learning Japanese language fundamentals through spaced repetition and active recall.
 
-![alt text](https://github.com/luke20332/Manabu/blob/main/images/home_screen.png "Home screen")
-
-![alt text](https://github.com/luke20332/Manabu/blob/main/images/guess_hiragana_streak.png "Guess Hiragana Game")
-
-![alt text](https://github.com/luke20332/Manabu/blob/main/images/play_options.png "Play Options")
+<div style="display: flex; gap: 10px;">
+  <img src="https://github.com/luke20332/Manabu/blob/main/images/home_screen.png" style="flex: 1; object-fit: cover;">
+  <img src="https://github.com/luke20332/Manabu/blob/main/images/guess_hiragana_streak.png" style="flex: 1; object-fit: cover;">
+  <img src="https://github.com/luke20332/Manabu/blob/main/images/play_options.png" style="flex: 1; object-fit: cover;">
+</div>
 
 ## Motivation
 The motivation for building this application has brewed for a long time. When I was younger I neglected to learn the fundamentals of my mother's mother tongue. This is something which had long disappointed me, especially when being asked "Oh, do you speak Japanese?" I have to reply no.
