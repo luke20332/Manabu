@@ -11,17 +11,21 @@ class PlayHomeTableViewCell: UITableViewCell {
 
     var gameImageView = UIImageView()
     var titleLabel = UILabel()
+    var highScoreLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(gameImageView)
         addSubview(titleLabel)
+        addSubview(highScoreLabel)
         
         configureImageView()
         configureTitleLabel()
+        configureHighScoreLabel()
         setImageConstraints()
         setTitleLabelConstraints()
+        setHighScoreLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -31,6 +35,7 @@ class PlayHomeTableViewCell: UITableViewCell {
     func set(game: GameMode) {
         gameImageView.image = game.image
         titleLabel.text = game.title
+        highScoreLabel.text = "🔥 High Score: \(game.highScore)"
     }
     
     func configureImageView() {
@@ -41,6 +46,13 @@ class PlayHomeTableViewCell: UITableViewCell {
     func configureTitleLabel() {
         titleLabel.numberOfLines = 0 // automatic word wrapping
         titleLabel.adjustsFontSizeToFitWidth = true //wont truncate it
+        titleLabel.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+    }
+    
+    func configureHighScoreLabel() {
+        highScoreLabel.numberOfLines = 0
+        highScoreLabel.adjustsFontSizeToFitWidth = true
+        highScoreLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
     }
     
     func setImageConstraints() {
@@ -53,9 +65,19 @@ class PlayHomeTableViewCell: UITableViewCell {
     
     func setTitleLabelConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: gameImageView.trailingAnchor, constant: 20).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+    }
+    
+    func setHighScoreLabelConstraints() {
+        highScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            highScoreLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            highScoreLabel.leadingAnchor.constraint(equalTo: gameImageView.trailingAnchor, constant: 20),
+            highScoreLabel.heightAnchor.constraint(equalToConstant: 20)
+        ])
     }
 }

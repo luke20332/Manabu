@@ -36,6 +36,7 @@ enum PlayEvent: CoordinatorEvent {
 }
 
 enum LearnEvent: CoordinatorEvent {
+    case homeButtonTapped
     case hirganaFlashCardsTapped
     case romanjiFlashCardsTapped
     case listenTapped

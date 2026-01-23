@@ -32,6 +32,6 @@ class LearnViewController: UIViewController, Coordinating {
     }
     
     @objc func didTapButton() {
-        coordinator?.eventOccurred(with: MainEvent.homeButtonTapped)
+        coordinator?.eventOccurred(with: LearnEvent.homeButtonTapped)
     }
 }

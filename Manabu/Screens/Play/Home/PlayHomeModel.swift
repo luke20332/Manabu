@@ -10,5 +10,7 @@ import UIKit
 struct GameMode {
     var image: UIImage
     var title: String
+    var highScore: Int
+    var event: PlayEvent
     // subtitle?
 }

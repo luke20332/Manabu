@@ -8,6 +8,7 @@
 import UIKit
 
 class PlayHomeViewController: UIViewController, Coordinating {
+    var viewModel = PlayHomeViewModel()
     var coordinator: Coordinator?
     
     var tableView = UITableView()
@@ -28,7 +29,10 @@ class PlayHomeViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Play"
-        games = fetchGames()
+        viewModel.fetchGames { games in
+            self.games = games
+            self.tableView.reloadData()
+        }
         configureTableView()
     }
     
@@ -60,17 +64,8 @@ extension PlayHomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.eventOccurred(with: PlayEvent.guessHiraganaTapped)
-    }
-}
-
-private extension PlayHomeViewController {
-    func fetchGames() -> [GameMode] {
-        let game1 = GameMode(image: Images.a_hiragana, title: "Guess the hiragana")
-        let game2 = GameMode(image: Images.a_english, title: "Guess the romanji")
-        let game3 = GameMode(image: SFSymbols.draw, title: "Draw")
-        let game4 = GameMode(image: SFSymbols.listen, title: "Listen")
+        let event = games[indexPath.row].event
         
-        return [game1, game2, game3, game4]
+        coordinator?.eventOccurred(with: event)
     }
 }

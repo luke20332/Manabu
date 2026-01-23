@@ -18,8 +18,10 @@ final class GuessHiraganaViewModel {
     // MARK: - Private State
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4
+    private var highScore: Int?
     
     init() {
+        getHighScore()
         startNewRound()
     }
     
@@ -82,10 +84,34 @@ final class GuessHiraganaViewModel {
         }
         
         shouldShowStreak = streak > 2
+        updateHighScoreIfNeeded()
     }
     
     func resetStreakCounter() {
         streak = 0
         shouldShowStreak = false
+    }
+    
+    func getHighScore() {
+        PersistenceManager.retrieveHighScore { result in
+            switch result {
+            case .success(let score):
+                print(score)
+                self.highScore = score
+            case .failure:
+                break
+            }
+        }
+    }
+    
+    func updateHighScoreIfNeeded() {
+        guard let highScore else {
+            return
+        }
+        
+        if streak > highScore {
+            self.highScore = streak
+            _ = PersistenceManager.saveHighScores(highScore: streak)
+        }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum SFSymbols {
-    static let home = UIImage(systemName: "house.lodge")
+    static let home = UIImage(systemName: "house")
     static let learn = UIImage(systemName: "text.book.closed")
     static let play = UIImage(systemName: "flag.pattern.checkered")
     

@@ -11,23 +11,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//        guard let windowScene = (scene as? UIWindowScene) else { return }
-//        
-//        window = UIWindow(windowScene: windowScene)
-//        window?.windowScene = windowScene
-//        window?.rootViewController = createTabBar()
-//        window?.makeKeyAndVisible()
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let coordinator = MainCoordinator()
-        
-        let navVC = UINavigationController()
+        let tabBarController = UITabBarController()
         
         let window = UIWindow(windowScene: windowScene)
-        
-        coordinator.navigationController = navVC
-        window.rootViewController = navVC
+
+        coordinator.tabBarController = tabBarController
+        window.rootViewController = tabBarController
         window.makeKeyAndVisible()
         
         self.window = window
@@ -35,41 +28,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         coordinator.start()
     }
     
-    func createTabBar() -> UITabBarController {
-        let tabBar = UITabBarController()
-        UITabBar.appearance().barTintColor = .systemGreen
-        tabBar.viewControllers = [
-            createHomeNavigationController(),
-            createLearnNavigationController(),
-            createPlayNavigationController()
-        ]
-        
-        return tabBar
-    }
-    
-    func createHomeNavigationController() -> UINavigationController {
-        let homeVC = HomeViewController()
-        homeVC.title = "Home"
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: SFSymbols.home, tag: 0)
-        
-        return UINavigationController(rootViewController: homeVC)
-    }
-    
-    func createPlayNavigationController() -> UINavigationController {
-        let playVC = PlayHomeViewController()
-        playVC.title = "Play"
-        playVC.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
-        
-        return UINavigationController(rootViewController: playVC)
-    }
-    
-    func createLearnNavigationController() -> UINavigationController {
-        let learnVC = LearnViewController()
-        learnVC.title = "Learn"
-        learnVC.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
-        
-        return UINavigationController(rootViewController: learnVC)
-    }
+//    func createTabBar() -> UITabBarController {
+//        let tabBar = UITabBarController()
+//        UITabBar.appearance().barTintColor = .systemGreen
+//        tabBar.viewControllers = [
+//            createHomeNavigationController(),
+//            createLearnNavigationController(),
+//            createPlayNavigationController()
+//        ]
+//        
+//        return tabBar
+//    }
+//    
+//    func createHomeNavigationController() -> UINavigationController {
+//        let homeVC = HomeViewController()
+//        homeVC.title = "Home"
+//        homeVC.tabBarItem = UITabBarItem(title: "Home", image: SFSymbols.home, tag: 0)
+//        
+//        return UINavigationController(rootViewController: homeVC)
+//    }
+//    
+//    func createPlayNavigationController() -> UINavigationController {
+//        let playVC = PlayHomeViewController()
+//        playVC.title = "Play"
+//        playVC.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
+//        
+//        return UINavigationController(rootViewController: playVC)
+//    }
+//    
+//    func createLearnNavigationController() -> UINavigationController {
+//        let learnVC = LearnViewController()
+//        learnVC.title = "Learn"
+//        learnVC.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
+//        
+//        return UINavigationController(rootViewController: learnVC)
+//    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         

@@ -25,6 +25,8 @@ class LearnCoordinator: Coordinator {
     
     func handleLearnEvent(_ type: LearnEvent) {
         switch type {
+        case .homeButtonTapped:
+            parentCoordinator?.navigationController?.tabBarController?.selectedIndex = 0
         case .hirganaFlashCardsTapped:
             break
         case .romanjiFlashCardsTapped:
@@ -40,6 +42,6 @@ class LearnCoordinator: Coordinator {
         var learnViewController: UIViewController & Coordinating = LearnViewController()
         learnViewController.coordinator = self
         
-        navigationController?.pushViewController(learnViewController, animated: true)
+        navigationController?.setViewControllers([learnViewController], animated: true)
     }
 }

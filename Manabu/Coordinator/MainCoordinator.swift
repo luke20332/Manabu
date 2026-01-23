@@ -8,9 +8,13 @@
 import Foundation
 import UIKit
 
-class MainCoordinator: Coordinator {    
+class MainCoordinator: Coordinator {
+    var tabBarController: UITabBarController?
     var navigationController: UINavigationController?
     var children: [Coordinator]? = []
+    
+    private var playCoordinator: PlayCoordinator?
+    private var learnCoordinator: LearnCoordinator?
     
     func eventOccurred(with type: any CoordinatorEvent) {
         if let mainEvent = type as? MainEvent {
@@ -33,32 +37,62 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        guard let navigationController else { return }
+        guard let tabBarController else { return }
         
-        var vc: UIViewController & Coordinating = HomeViewController()
-        vc.coordinator = self
+        let homeNavigationController = createHomeNavigationController()
+        let learnNavigationController = createLearnNavigationController()
+        let playNavigationController = createPlayNavigationController()
         
-        navigationController.setViewControllers([vc], animated: false)
+        tabBarController.viewControllers = [homeNavigationController, learnNavigationController, playNavigationController]
+        
+        self.navigationController = homeNavigationController
     }
     
     func goToPlay() {
-        guard let navigationController else { return }
-        let playCoordinator = PlayCoordinator.init(navigationController: navigationController)
-        
-        playCoordinator.parentCoordinator = self
-        
-        children?.append(playCoordinator)
-        
-        playCoordinator.start()
+        tabBarController?.selectedIndex = 2
     }
     
     func goToLearn() {
-        guard let navigationController else { return }
-        let learnCoordinator = LearnCoordinator(navigationController: navigationController)
-        learnCoordinator.parentCoordinator = self
+        tabBarController?.selectedIndex = 1
+    }
+}
+
+private extension MainCoordinator {
+    func createHomeNavigationController() -> UINavigationController {
+        let homeViewController = HomeViewController()
+        homeViewController.coordinator = self
         
-        children?.append(learnCoordinator)
+        let homeNavigationController = UINavigationController()
+        homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: SFSymbols.home, tag: 0)
+        homeNavigationController.setViewControllers([homeViewController], animated: false)
         
-        learnCoordinator.start()
+        return homeNavigationController
+    }
+    
+    func createLearnNavigationController() -> UINavigationController {
+        let learnNavigationController = UINavigationController()
+        
+        learnNavigationController.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
+        learnNavigationController.navigationBar.prefersLargeTitles = true
+        
+        learnCoordinator = LearnCoordinator(navigationController: learnNavigationController)
+        learnCoordinator?.parentCoordinator = self
+        children?.append(learnCoordinator!)
+        learnCoordinator?.start()
+        
+        return learnNavigationController
+    }
+    
+    func createPlayNavigationController() -> UINavigationController {
+        let playNavigationController = UINavigationController()
+        playNavigationController.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
+//        playNavigationController.navigationBar.prefersLargeTitles = true
+
+        playCoordinator = PlayCoordinator(navigationController: playNavigationController)
+        playCoordinator?.parentCoordinator = self
+        children?.append(playCoordinator!)
+        playCoordinator?.start()
+        
+        return playNavigationController
     }
 }

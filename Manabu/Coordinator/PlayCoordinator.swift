@@ -37,10 +37,10 @@ class PlayCoordinator: Coordinator {
     }
     
     func start() {
-        var vc: UIViewController & Coordinating = PlayHomeViewController()
-        vc.coordinator = self
-        
-        navigationController?.setViewControllers([vc], animated: false)
+        var playViewController: UIViewController & Coordinating = PlayHomeViewController()
+        playViewController.coordinator = self
+
+        navigationController?.setViewControllers([playViewController], animated: false)
     }
 }
 
