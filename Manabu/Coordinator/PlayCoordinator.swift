@@ -39,6 +39,7 @@ class PlayCoordinator: Coordinator {
     func start() {
         var playViewController: UIViewController & Coordinating = PlayHomeViewController()
         playViewController.coordinator = self
+        playViewController.view.backgroundColor = ColorPalette.backgroundColor
 
         navigationController?.setViewControllers([playViewController], animated: false)
     }

@@ -38,6 +38,7 @@ class PlayHomeViewController: UIViewController, Coordinating {
     
     func configureTableView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = ColorPalette.backgroundColor
         setTableViewDelegates()
         tableView.rowHeight = 100
         tableView.register(PlayHomeTableViewCell.self, forCellReuseIdentifier: Cells.playHomeCells)

@@ -33,6 +33,7 @@ class PlayHomeTableViewCell: UITableViewCell {
     }
     
     func set(game: GameMode) {
+        self.backgroundColor = ColorPalette.backgroundColor
         gameImageView.image = game.image
         titleLabel.text = game.title
         highScoreLabel.text = "🔥 High Score: \(game.highScore)"

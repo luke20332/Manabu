@@ -61,6 +61,7 @@ private extension MainCoordinator {
     func createHomeNavigationController() -> UINavigationController {
         let homeViewController = HomeViewController()
         homeViewController.coordinator = self
+        homeViewController.view.backgroundColor = ColorPalette.backgroundColor
         
         let homeNavigationController = UINavigationController()
         homeNavigationController.tabBarItem = UITabBarItem(title: "Home", image: SFSymbols.home, tag: 0)

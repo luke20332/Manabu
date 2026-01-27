@@ -21,3 +21,8 @@ enum Images {
     static let a_hiragana = UIImage(named: "a_hiragana")!
     static let a_english = UIImage(named: "a_english")!
 }
+
+enum ColorPalette {
+    static let backgroundColor: UIColor = .systemGray6
+    static let buttonColor: UIColor = .darkGray
+}

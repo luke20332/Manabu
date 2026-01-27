@@ -12,10 +12,7 @@ class HomeViewController: UIViewController, Coordinating {
     
     let titleView = ManabuTextLabel(fontSize: 100)
     
-    let romanjiLabel = ManabuTextLabel(fontSize: 20)
-    let englishLabel = ManabuTextLabel(fontSize: 20)
-    
-    let translationStackView = UIStackView()
+    let translationView = ManabuHomeTranslationView()
     let tabStackView = UIStackView()
     
     let playButton = ManabuTextButton()
@@ -24,10 +21,8 @@ class HomeViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
-        
         configureTitleView()
-        configureTranslationStackView()
+        configureTranslationView()
         configureTabStackView()
         configureButtons()
     }
@@ -38,37 +33,27 @@ private extension HomeViewController {
         view.addSubview(titleView)
         titleView.text = "学ぶ"
         
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             titleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             titleView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             titleView.heightAnchor.constraint(equalToConstant: 200)
         ])
-        titleView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func configureTranslationStackView() {
-        view.addSubview(translationStackView)
+    func configureTranslationView() {
+        view.addSubview(translationView)
         
-        translationStackView.translatesAutoresizingMaskIntoConstraints = false
-        translationStackView.axis = .vertical
-        translationStackView.distribution = .fillEqually
-        
-        translationStackView.addArrangedSubview(romanjiLabel)
-        translationStackView.addArrangedSubview(englishLabel)
-        
-        romanjiLabel.text = "🇯🇵 Manabu"
-        romanjiLabel.font = .boldSystemFont(ofSize: 20)
-        englishLabel.text = "🇬🇧 Learning / To Learn"
-        englishLabel.font = .italicSystemFont(ofSize: 20)
-        
-        romanjiLabel.textAlignment = .center
-        englishLabel.textAlignment = .center
+        translationView.translatesAutoresizingMaskIntoConstraints = false
+        translationView.layer.cornerRadius = 10
+        translationView.backgroundColor = .systemGray4
         
         NSLayoutConstraint.activate([
-            translationStackView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30),
-            translationStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            translationStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            translationStackView.heightAnchor.constraint(equalToConstant: 50)
+            translationView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30),
+            translationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            translationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            translationView.heightAnchor.constraint(equalToConstant: 75)
         ])
     }
     
@@ -83,7 +68,7 @@ private extension HomeViewController {
         tabStackView.addArrangedSubview(playButton)
         
         NSLayoutConstraint.activate([
-            tabStackView.topAnchor.constraint(equalTo: view.centerYAnchor),
+            tabStackView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
             tabStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             tabStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             tabStackView.heightAnchor.constraint(equalToConstant: 200)
@@ -91,12 +76,11 @@ private extension HomeViewController {
     }
     
     func configureButtons() {
-        
         learnButton.addTarget(self, action: #selector(learnButtonTapped), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         
-        learnButton.set(title: "Learn", color: .systemBlue, fontSize: 20, systemImageName: "text.book.closed")
-        playButton.set(title: "Play", color: .systemGreen, fontSize: 20, systemImageName: "flag.pattern.checkered")
+        learnButton.set(title: "Learn", color: .darkGray, fontSize: 40, systemImageName: "text.book.closed")
+        playButton.set(title: "Play", color: .darkGray, fontSize: 40, systemImageName: "flag.pattern.checkered")
     }
 }
 

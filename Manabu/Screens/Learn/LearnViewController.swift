@@ -12,7 +12,6 @@ class LearnViewController: UIViewController, Coordinating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
         title = "Learn"
        
         configureButton()

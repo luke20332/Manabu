@@ -41,6 +41,7 @@ class LearnCoordinator: Coordinator {
     func start() {
         var learnViewController: UIViewController & Coordinating = LearnViewController()
         learnViewController.coordinator = self
+        learnViewController.view.backgroundColor = ColorPalette.backgroundColor
         
         navigationController?.setViewControllers([learnViewController], animated: true)
     }

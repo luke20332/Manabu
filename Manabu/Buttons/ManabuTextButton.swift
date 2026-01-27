@@ -8,7 +8,7 @@
 import UIKit
 
 class ManabuTextButton: UIButton {
-    private var defaultFontSize: CGFloat = 50
+    private var defaultFontSize: CGFloat = 40
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,13 +25,13 @@ class ManabuTextButton: UIButton {
     }
     
     private func configure() {
-        var config = UIButton.Configuration.tinted()
+        let config = UIButton.Configuration.tinted()
         
-        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-            var outgoing = incoming
-            outgoing.font = UIFont.systemFont(ofSize: self.defaultFontSize, weight: .semibold)
-            return outgoing
-        }
+//        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+//            var outgoing = incoming
+//            outgoing.font = UIFont.systemFont(ofSize: self.defaultFontSize, weight: .semibold)
+//            return outgoing
+//        }
         
         configuration = config
         translatesAutoresizingMaskIntoConstraints = false
