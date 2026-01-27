@@ -8,9 +8,16 @@
 import UIKit
 
 struct GameMode {
-    var image: UIImage
+//    var image: UIImage
+    var imageConfig: ImageConfig
     var title: String
     var highScore: Int
     var event: PlayEvent
+    
     // subtitle?
+}
+
+enum ImageConfig {
+    case image(UIImage)
+    case text(String)
 }

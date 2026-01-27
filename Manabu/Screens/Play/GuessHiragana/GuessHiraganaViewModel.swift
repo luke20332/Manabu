@@ -31,11 +31,9 @@ final class GuessHiraganaViewModel {
             shouldShowStreak = true
         }
         
-        // select the value from dict
         let (promptKey, correctAnswer) = hiraganaDict.randomElement()!
         prompt = promptKey
         
-        // randomly choose position to be correct
         let correctIndex = Int.random(in: 0..<numberOfOptions)
         correctOptionID = correctIndex
         

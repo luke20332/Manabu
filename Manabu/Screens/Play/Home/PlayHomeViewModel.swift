@@ -20,25 +20,25 @@ final class PlayHomeViewModel {
             }
             
             let guessHiragana = GameMode(
-                image: Images.a_hiragana,
-                title: "Guess the hiragana",
+                imageConfig: .text("お"),
+                title: "Guess the Hiragana",
                 highScore: guessHiraganaHighScore,
-                event: .guessHiraganaTapped
+                event: .guessHiraganaTapped,
             )
             let guessRomanji = GameMode(
-                image: Images.a_english,
-                title: "Guess the romanji",
+                imageConfig: .text("a"),
+                title: "Guess the Romanji",
                 highScore: 0,
-                event: .guessRomanjiTapped
+                event: .guessRomanjiTapped,
             )
             let draw = GameMode(
-                image: SFSymbols.draw,
+                imageConfig: .image(SFSymbols.draw),
                 title: "Draw",
                 highScore: 0,
                 event: .drawTapped
             )
             let listen = GameMode(
-                image: SFSymbols.listen,
+                imageConfig: .image(SFSymbols.listen),
                 title: "Listen",
                 highScore: 0,
                 event: .listenTapped

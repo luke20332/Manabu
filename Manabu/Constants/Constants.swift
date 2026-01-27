@@ -13,8 +13,8 @@ enum SFSymbols {
     static let learn = UIImage(systemName: "text.book.closed")
     static let play = UIImage(systemName: "flag.pattern.checkered")
     
-    static let draw = UIImage(systemName: "pencil.and.scribble")!
-    static let listen = UIImage(systemName: "ear")!
+    static let draw = UIImage(systemName: "pencil.and.outline")!
+    static let listen = UIImage(systemName: "waveform")!
 }
 
 enum Images {

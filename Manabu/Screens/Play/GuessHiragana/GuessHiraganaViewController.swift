@@ -32,7 +32,7 @@ class GuessHiraganaViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = ColorPalette.backgroundColor
         
         view.addSubview(streakCounterView)
         view.addSubview(characterView)
@@ -117,11 +117,11 @@ private extension GuessHiraganaViewController {
         let buttons = [optionOne, optionTwo, optionThree, optionFour]
         
         for (button, option) in zip(buttons, viewModel.options) {
-            button.set(title: option.title, color: .systemBackground, fontSize: Constants.buttonFontSize, systemImageName: nil)
+            button.set(title: option.title, color: ColorPalette.buttonColor, fontSize: Constants.buttonFontSize, systemImageName: nil)
             
             switch option.state {
             case .normal:
-                button.setColor(.systemBackground)
+                button.setColor(ColorPalette.backgroundColor)
             case .correct:
                 button.setColor(.systemGreen)
             case .incorrect:

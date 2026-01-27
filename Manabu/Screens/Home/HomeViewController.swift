@@ -69,8 +69,8 @@ private extension HomeViewController {
         
         NSLayoutConstraint.activate([
             tabStackView.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 50),
-            tabStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            tabStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            tabStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 75),
+            tabStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -75),
             tabStackView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }

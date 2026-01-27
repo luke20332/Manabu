@@ -8,8 +8,8 @@
 import UIKit
 
 class PlayHomeTableViewCell: UITableViewCell {
-
     var gameImageView = UIImageView()
+    var textImageView = UILabel()
     var titleLabel = UILabel()
     var highScoreLabel = UILabel()
     
@@ -17,12 +17,16 @@ class PlayHomeTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(gameImageView)
+        addSubview(textImageView)
         addSubview(titleLabel)
         addSubview(highScoreLabel)
         
         configureImageView()
+        configureTextImageView()
         configureTitleLabel()
         configureHighScoreLabel()
+        
+        setTextImageConstraints()
         setImageConstraints()
         setTitleLabelConstraints()
         setHighScoreLabelConstraints()
@@ -34,14 +38,36 @@ class PlayHomeTableViewCell: UITableViewCell {
     
     func set(game: GameMode) {
         self.backgroundColor = ColorPalette.backgroundColor
-        gameImageView.image = game.image
+        
+        switch game.imageConfig {
+        case .image(let image):
+            gameImageView.image = image
+            gameImageView.isHidden = false
+            textImageView.isHidden = true
+//            gameImageView.tintColor = .systemGray
+        case .text(let text):
+            textImageView.text = text
+            textImageView.isHidden = false
+            gameImageView.isHidden = true
+        }
+        
+        
         titleLabel.text = game.title
         highScoreLabel.text = "🔥 High Score: \(game.highScore)"
+    }
+    
+    func configureTextImageView() {
+        textImageView.textAlignment = .center
+        textImageView.font = .systemFont(ofSize: 60, weight: .semibold)
+        textImageView.textColor = .label
+        textImageView.adjustsFontForContentSizeCategory = true
     }
     
     func configureImageView() {
         gameImageView.layer.cornerRadius = 10
         gameImageView.clipsToBounds = true
+        gameImageView.contentMode = .scaleAspectFill
+        gameImageView.tintColor = .label
     }
     
     func configureTitleLabel() {
@@ -54,6 +80,14 @@ class PlayHomeTableViewCell: UITableViewCell {
         highScoreLabel.numberOfLines = 0
         highScoreLabel.adjustsFontSizeToFitWidth = true
         highScoreLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+    }
+    
+    func setTextImageConstraints() {
+        textImageView.translatesAutoresizingMaskIntoConstraints = false
+        textImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        textImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
+        textImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        textImageView.widthAnchor.constraint(equalTo: textImageView.heightAnchor).isActive = true
     }
     
     func setImageConstraints() {

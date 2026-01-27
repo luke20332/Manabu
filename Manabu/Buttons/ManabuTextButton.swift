@@ -25,13 +25,13 @@ class ManabuTextButton: UIButton {
     }
     
     private func configure() {
-        let config = UIButton.Configuration.tinted()
+        var config = UIButton.Configuration.tinted()
         
-//        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-//            var outgoing = incoming
-//            outgoing.font = UIFont.systemFont(ofSize: self.defaultFontSize, weight: .semibold)
-//            return outgoing
-//        }
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: self.defaultFontSize, weight: .semibold)
+            return outgoing
+        }
         
         configuration = config
         translatesAutoresizingMaskIntoConstraints = false

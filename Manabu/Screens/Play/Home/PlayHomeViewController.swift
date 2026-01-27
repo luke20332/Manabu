@@ -43,6 +43,7 @@ class PlayHomeViewController: UIViewController, Coordinating {
         tableView.rowHeight = 100
         tableView.register(PlayHomeTableViewCell.self, forCellReuseIdentifier: Cells.playHomeCells)
         tableView.pin(to: view)
+        tableView.separatorStyle = .none
     }
     
     func setTableViewDelegates() {
