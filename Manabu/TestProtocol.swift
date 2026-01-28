@@ -8,4 +8,8 @@
 import Foundation
 
 // sourcery: AutoMockable
-protocol TestProtocol {}
+public protocol TestProtocol: AnyObject {
+    func helloWorld()
+    
+    func foo(bar: String) -> Bool
+}

@@ -8,10 +8,10 @@
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
             uuid = "D8BFC2B1-53A4-478C-9ED9-6BB7AABE21C1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            symbolName = "malloc_error_break&#10;"
+            symbolName = "malloc_error_break"
             moduleName = "">
             <Locations>
             </Locations>

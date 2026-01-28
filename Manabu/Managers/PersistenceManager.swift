@@ -7,19 +7,26 @@
 
 import Foundation
 
-enum PersistenceActionType {
-    case update
+// sourcery: AutoMockable
+protocol PersistenceManagerProtocol {
+    func retrieveHighScore(completion: @escaping (Result<Int, ManabuError>) -> (Void))
+    func saveHighScores(highScore: Int) -> ManabuError?
 }
 
-enum PersistenceManager {
+enum PersistenceManager: PersistenceManagerProtocol {
+    
     static private let defaults = UserDefaults.standard
+    
+    static var current: PersistenceManagerProtocol = PersistenceManager.live
+    
+    case live
     
     enum Keys {
         static let guessHiraganaHighScore = "guessHiraganaHighScore"
     }
     
-    static func retrieveHighScore(completion: @escaping (Result<Int, ManabuError>) -> (Void)) {
-        guard let highScoreData = defaults.object(forKey: Keys.guessHiraganaHighScore) as? Data else {
+    func retrieveHighScore(completion: @escaping (Result<Int, ManabuError>) -> (Void)) {
+        guard let highScoreData = PersistenceManager.defaults.object(forKey: Keys.guessHiraganaHighScore) as? Data else {
             completion(.success(0))
             return
         }
@@ -33,11 +40,11 @@ enum PersistenceManager {
         }
     }
     
-    static func saveHighScores(highScore: Int) -> ManabuError? {
+    func saveHighScores(highScore: Int) -> ManabuError? {
         do {
             let encoder = JSONEncoder()
             let encodedHighScore = try encoder.encode(highScore)
-            defaults.set(encodedHighScore, forKey: Keys.guessHiraganaHighScore)
+            PersistenceManager.defaults.set(encodedHighScore, forKey: Keys.guessHiraganaHighScore)
             return nil
         } catch {
             return .unableToUpdate

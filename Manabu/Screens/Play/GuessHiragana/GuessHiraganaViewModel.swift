@@ -91,7 +91,7 @@ final class GuessHiraganaViewModel {
     }
     
     func getHighScore() {
-        PersistenceManager.retrieveHighScore { result in
+        PersistenceManager.current.retrieveHighScore { result in
             switch result {
             case .success(let score):
                 self.highScore = score
@@ -108,7 +108,7 @@ final class GuessHiraganaViewModel {
         
         if streak > highScore {
             self.highScore = streak
-            _ = PersistenceManager.saveHighScores(highScore: streak)
+            _ = PersistenceManager.current.saveHighScores(highScore: streak)
         }
     }
 }

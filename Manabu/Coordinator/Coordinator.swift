@@ -28,7 +28,7 @@ enum MainEvent: CoordinatorEvent {
     case homeButtonTapped
 }
 
-enum PlayEvent: CoordinatorEvent {
+enum PlayEvent: CoordinatorEvent, Equatable {
     case guessHiraganaTapped
     case guessRomanjiTapped
     case drawTapped

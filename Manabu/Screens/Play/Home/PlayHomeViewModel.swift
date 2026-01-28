@@ -7,9 +7,20 @@
 
 import Foundation
 
+// sourcery: AutoMockable
+protocol PlayHomeViewModelProtocol {
+    func fetchGames(completion: @escaping ([GameMode]) -> Void)
+}
+
 final class PlayHomeViewModel {
+    private let persistenceManager: PersistenceManagerProtocol
+    
+    init(persistenceManager: PersistenceManagerProtocol = PersistenceManager.live) {
+        self.persistenceManager = persistenceManager
+    }
+    
     func fetchGames(completion: @escaping ([GameMode]) -> Void) {
-        PersistenceManager.retrieveHighScore { result in
+        persistenceManager.retrieveHighScore { result in
             let guessHiraganaHighScore: Int
             
             switch result {
