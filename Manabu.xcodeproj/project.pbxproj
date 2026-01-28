@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		44CCBFB5D7D467BC7208FDDB /* Pods_Manabu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 778F8471626765F0D0569AD5 /* Pods_Manabu.framework */; };
+		A4BBF4193244BED55F810CEF /* Pods_Manabu_ManabuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56E8C92465D0BBC0E9BCCA0D /* Pods_Manabu_ManabuUITests.framework */; };
+		B9BAABA31EB856A5ED426435 /* Pods_ManabuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E1741F059DADCAC525E025 /* Pods_ManabuTests.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A303F7A22F1E48130083DC65 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,9 +30,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E87266A10AC1059C4C4871 /* Pods-Manabu-ManabuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manabu-ManabuUITests.debug.xcconfig"; path = "Target Support Files/Pods-Manabu-ManabuUITests/Pods-Manabu-ManabuUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0CB89898BB4A7BC0996663AF /* Pods-ManabuTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManabuTests.release.xcconfig"; path = "Target Support Files/Pods-ManabuTests/Pods-ManabuTests.release.xcconfig"; sourceTree = "<group>"; };
+		2395736E375CFBF4E42E3289 /* Pods-Manabu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manabu.release.xcconfig"; path = "Target Support Files/Pods-Manabu/Pods-Manabu.release.xcconfig"; sourceTree = "<group>"; };
+		48A8B0FC4E485ED2C4A911D5 /* Pods-Manabu-ManabuUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manabu-ManabuUITests.release.xcconfig"; path = "Target Support Files/Pods-Manabu-ManabuUITests/Pods-Manabu-ManabuUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4DC996FEFA353D12DA6C836C /* Pods-Manabu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manabu.debug.xcconfig"; path = "Target Support Files/Pods-Manabu/Pods-Manabu.debug.xcconfig"; sourceTree = "<group>"; };
+		56E8C92465D0BBC0E9BCCA0D /* Pods_Manabu_ManabuUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manabu_ManabuUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		778F8471626765F0D0569AD5 /* Pods_Manabu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manabu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A303F7882F1E48110083DC65 /* Manabu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Manabu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A303F7A12F1E48130083DC65 /* ManabuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManabuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A303F7AB2F1E48130083DC65 /* ManabuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManabuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED1586F88B09E6F13B235AB6 /* Pods-ManabuTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManabuTests.debug.xcconfig"; path = "Target Support Files/Pods-ManabuTests/Pods-ManabuTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4E1741F059DADCAC525E025 /* Pods_ManabuTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManabuTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -65,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CCBFB5D7D467BC7208FDDB /* Pods_Manabu.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9BAABA31EB856A5ED426435 /* Pods_ManabuTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,12 +96,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4BBF4193244BED55F810CEF /* Pods_Manabu_ManabuUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		824BE12A6EA9E69A572739E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4DC996FEFA353D12DA6C836C /* Pods-Manabu.debug.xcconfig */,
+				2395736E375CFBF4E42E3289 /* Pods-Manabu.release.xcconfig */,
+				03E87266A10AC1059C4C4871 /* Pods-Manabu-ManabuUITests.debug.xcconfig */,
+				48A8B0FC4E485ED2C4A911D5 /* Pods-Manabu-ManabuUITests.release.xcconfig */,
+				ED1586F88B09E6F13B235AB6 /* Pods-ManabuTests.debug.xcconfig */,
+				0CB89898BB4A7BC0996663AF /* Pods-ManabuTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A303F77F2F1E48110083DC65 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +123,8 @@
 				A303F7A42F1E48130083DC65 /* ManabuTests */,
 				A303F7AE2F1E48130083DC65 /* ManabuUITests */,
 				A303F7892F1E48110083DC65 /* Products */,
+				824BE12A6EA9E69A572739E9 /* Pods */,
+				F40EDC09E22366C97C9F35AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +138,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F40EDC09E22366C97C9F35AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				778F8471626765F0D0569AD5 /* Pods_Manabu.framework */,
+				56E8C92465D0BBC0E9BCCA0D /* Pods_Manabu_ManabuUITests.framework */,
+				F4E1741F059DADCAC525E025 /* Pods_ManabuTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -112,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A303F7B42F1E48130083DC65 /* Build configuration list for PBXNativeTarget "Manabu" */;
 			buildPhases = (
+				6DDA721A292FC4EF1065265E /* [CP] Check Pods Manifest.lock */,
 				A303F7842F1E48110083DC65 /* Sources */,
 				A303F7852F1E48110083DC65 /* Frameworks */,
 				A303F7862F1E48110083DC65 /* Resources */,
+				A32A81BE2F2A445C00E274E5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -124,8 +169,6 @@
 				A303F78A2F1E48110083DC65 /* Manabu */,
 			);
 			name = Manabu;
-			packageProductDependencies = (
-			);
 			productName = Manabu;
 			productReference = A303F7882F1E48110083DC65 /* Manabu.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +177,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A303F7B92F1E48130083DC65 /* Build configuration list for PBXNativeTarget "ManabuTests" */;
 			buildPhases = (
+				8DD01EEE56F5B1AFB5D9D5AB /* [CP] Check Pods Manifest.lock */,
 				A303F79D2F1E48130083DC65 /* Sources */,
 				A303F79E2F1E48130083DC65 /* Frameworks */,
 				A303F79F2F1E48130083DC65 /* Resources */,
@@ -147,8 +191,6 @@
 				A303F7A42F1E48130083DC65 /* ManabuTests */,
 			);
 			name = ManabuTests;
-			packageProductDependencies = (
-			);
 			productName = ManabuTests;
 			productReference = A303F7A12F1E48130083DC65 /* ManabuTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,6 +199,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A303F7BC2F1E48130083DC65 /* Build configuration list for PBXNativeTarget "ManabuUITests" */;
 			buildPhases = (
+				D1E159CCF4A0597C60F866EB /* [CP] Check Pods Manifest.lock */,
 				A303F7A72F1E48130083DC65 /* Sources */,
 				A303F7A82F1E48130083DC65 /* Frameworks */,
 				A303F7A92F1E48130083DC65 /* Resources */,
@@ -170,8 +213,6 @@
 				A303F7AE2F1E48130083DC65 /* ManabuUITests */,
 			);
 			name = ManabuUITests;
-			packageProductDependencies = (
-			);
 			productName = ManabuUITests;
 			productReference = A303F7AB2F1E48130083DC65 /* ManabuUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -244,6 +285,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6DDA721A292FC4EF1065265E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Manabu-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DD01EEE56F5B1AFB5D9D5AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ManabuTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A32A81BE2F2A445C00E274E5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nSOURCERY_BIN=\"/opt/homebrew/bin/sourcery\"\nCONFIG_FILE=\"$SRCROOT/.sourcery.yml\"\n\nif [ -x \"$SOURCERY_BIN\" ] && [ -f \"$CONFIG_FILE\" ]; then\n  \"$SOURCERY_BIN\" --config \"$CONFIG_FILE\"\nelse\n  echo \"warning: Sourcery not installed or config missing\"\nfi\n\n";
+		};
+		D1E159CCF4A0597C60F866EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Manabu-ManabuUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A303F7842F1E48110083DC65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -284,12 +411,14 @@
 /* Begin XCBuildConfiguration section */
 		A303F7B52F1E48130083DC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DC996FEFA353D12DA6C836C /* Pods-Manabu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VG9YM26SU;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Manabu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -316,12 +445,14 @@
 		};
 		A303F7B62F1E48130083DC65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2395736E375CFBF4E42E3289 /* Pods-Manabu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2VG9YM26SU;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Manabu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -469,6 +600,7 @@
 		};
 		A303F7BA2F1E48130083DC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED1586F88B09E6F13B235AB6 /* Pods-ManabuTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -491,6 +623,7 @@
 		};
 		A303F7BB2F1E48130083DC65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CB89898BB4A7BC0996663AF /* Pods-ManabuTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -513,6 +646,7 @@
 		};
 		A303F7BD2F1E48130083DC65 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03E87266A10AC1059C4C4871 /* Pods-Manabu-ManabuUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -533,6 +667,7 @@
 		};
 		A303F7BE2F1E48130083DC65 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48A8B0FC4E485ED2C4A911D5 /* Pods-Manabu-ManabuUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

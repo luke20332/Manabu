@@ -32,13 +32,15 @@ final class PlayHomeViewModel {
                 event: .guessRomanjiTapped,
             )
             let draw = GameMode(
-                imageConfig: .image(SFSymbols.draw),
+//                imageConfig: .image(SFSymbols.draw),
+                imageConfig: .image(systemImageName: "pencil.and.outline"),
                 title: "Draw",
                 highScore: 0,
                 event: .drawTapped
             )
             let listen = GameMode(
-                imageConfig: .image(SFSymbols.listen),
+//                imageConfig: .image(SFSymbols.listen),
+                imageConfig: .image(systemImageName: "waveform"),
                 title: "Listen",
                 highScore: 0,
                 event: .listenTapped

@@ -94,7 +94,6 @@ final class GuessHiraganaViewModel {
         PersistenceManager.retrieveHighScore { result in
             switch result {
             case .success(let score):
-                print(score)
                 self.highScore = score
             case .failure:
                 break

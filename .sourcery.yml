@@ -1,0 +1,7 @@
+sources:
+  - ./Manabu
+templates:
+  - ./Templates
+  
+output: .Manabu/Generated
+

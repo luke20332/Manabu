@@ -1,0 +1,6 @@
+framework module Pods_Manabu {
+  umbrella header "Pods-Manabu-umbrella.h"
+
+  export *
+  module * { export * }
+}

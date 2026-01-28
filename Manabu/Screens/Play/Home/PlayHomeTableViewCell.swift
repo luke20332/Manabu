@@ -40,8 +40,8 @@ class PlayHomeTableViewCell: UITableViewCell {
         self.backgroundColor = ColorPalette.backgroundColor
         
         switch game.imageConfig {
-        case .image(let image):
-            gameImageView.image = image
+        case .image(let imageName):
+            gameImageView.image = UIImage(systemName: imageName)
             gameImageView.isHidden = false
             textImageView.isHidden = true
 //            gameImageView.tintColor = .systemGray

@@ -1,0 +1,18 @@
+PODS:
+  - Sourcery (2.3.0):
+    - Sourcery/CLI-Only (= 2.3.0)
+  - Sourcery/CLI-Only (2.3.0)
+
+DEPENDENCIES:
+  - Sourcery
+
+SPEC REPOS:
+  trunk:
+    - Sourcery
+
+SPEC CHECKSUMS:
+  Sourcery: 521dc708d3d473409e69f1fe7740051a1294d8a4
+
+PODFILE CHECKSUM: 8c1d6c3a1f7994710e74003d9e6d6d853d436dad
+
+COCOAPODS: 1.16.2
