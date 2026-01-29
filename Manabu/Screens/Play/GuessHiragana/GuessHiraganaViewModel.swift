@@ -20,7 +20,10 @@ final class GuessHiraganaViewModel {
     private var numberOfOptions: Int = 4
     private var highScore: Int?
     
-    init() {
+    private var persistenceManager: PersistenceManagerProtocol
+    
+    init(persistenceManager: PersistenceManagerProtocol) {
+        self.persistenceManager = persistenceManager
         getHighScore()
         startNewRound()
     }
@@ -91,7 +94,7 @@ final class GuessHiraganaViewModel {
     }
     
     func getHighScore() {
-        PersistenceManager.current.retrieveHighScore { result in
+        persistenceManager.retrieveHighScore { result in
             switch result {
             case .success(let score):
                 self.highScore = score
@@ -108,7 +111,7 @@ final class GuessHiraganaViewModel {
         
         if streak > highScore {
             self.highScore = streak
-            _ = PersistenceManager.current.saveHighScores(highScore: streak)
+            _ = persistenceManager.saveHighScores(highScore: streak)
         }
     }
 }

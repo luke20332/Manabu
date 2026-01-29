@@ -14,7 +14,7 @@ class GuessHiraganaViewController: UIViewController, Coordinating {
         static let buttonFontSize: CGFloat = 50
     }
     
-    private let viewModel = GuessHiraganaViewModel()
+    private let viewModel = GuessHiraganaViewModel(persistenceManager: PersistenceManager())
     
     let streakCounterView = ManabuCounterLabel()
     

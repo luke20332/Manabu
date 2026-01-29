@@ -13,20 +13,20 @@ protocol PersistenceManagerProtocol {
     func saveHighScores(highScore: Int) -> ManabuError?
 }
 
-enum PersistenceManager: PersistenceManagerProtocol {
+struct PersistenceManager: PersistenceManagerProtocol {
     
-    static private let defaults = UserDefaults.standard
-    
-    static var current: PersistenceManagerProtocol = PersistenceManager.live
-    
-    case live
+    private let defaults: UserDefaults
     
     enum Keys {
         static let guessHiraganaHighScore = "guessHiraganaHighScore"
     }
     
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+    }
+    
     func retrieveHighScore(completion: @escaping (Result<Int, ManabuError>) -> (Void)) {
-        guard let highScoreData = PersistenceManager.defaults.object(forKey: Keys.guessHiraganaHighScore) as? Data else {
+        guard let highScoreData = defaults.object(forKey: Keys.guessHiraganaHighScore) as? Data else {
             completion(.success(0))
             return
         }
@@ -36,7 +36,7 @@ enum PersistenceManager: PersistenceManagerProtocol {
             let highScore = try decoder.decode(Int.self, from: highScoreData)
             completion(.success(highScore))
         } catch {
-            completion(.failure(.unableToUpdate))
+            completion(.failure(.unableToFetch))
         }
     }
     
@@ -44,7 +44,7 @@ enum PersistenceManager: PersistenceManagerProtocol {
         do {
             let encoder = JSONEncoder()
             let encodedHighScore = try encoder.encode(highScore)
-            PersistenceManager.defaults.set(encodedHighScore, forKey: Keys.guessHiraganaHighScore)
+            defaults.set(encodedHighScore, forKey: Keys.guessHiraganaHighScore)
             return nil
         } catch {
             return .unableToUpdate

@@ -8,7 +8,7 @@
 import UIKit
 
 class PlayHomeViewController: UIViewController, Coordinating {
-    var viewModel = PlayHomeViewModel()
+    var viewModel = PlayHomeViewModel(persistenceManager: PersistenceManager())
     var coordinator: Coordinator?
     
     var tableView = UITableView()

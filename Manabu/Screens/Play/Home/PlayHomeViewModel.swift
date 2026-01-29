@@ -15,7 +15,7 @@ protocol PlayHomeViewModelProtocol {
 final class PlayHomeViewModel {
     private let persistenceManager: PersistenceManagerProtocol
     
-    init(persistenceManager: PersistenceManagerProtocol = PersistenceManager.live) {
+    init(persistenceManager: PersistenceManagerProtocol) {
         self.persistenceManager = persistenceManager
     }
     

@@ -9,4 +9,5 @@ import Foundation
 
 enum ManabuError: String, Error {
     case unableToUpdate = "Unable to update the cache. Please try again later."
+    case unableToFetch = "Unable to fetch data. Please try again"
 }
