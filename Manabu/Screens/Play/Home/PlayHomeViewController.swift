@@ -29,10 +29,24 @@ class PlayHomeViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Play"
-        viewModel.fetchGames { games in
-            self.games = games
-            self.tableView.reloadData()
+        viewModel.fetchGames { result in
+            switch result {
+            case .success(let games):
+                self.games = games
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            case .failure(let error):
+                print("Error: \(error)")
+            }
         }
+//        viewModel.oldFetchGames { games in 
+//            self.games = games
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
+//            }
+//        }
         configureTableView()
     }
     

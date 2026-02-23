@@ -41,7 +41,7 @@ class PlayHomeTableViewCell: UITableViewCell {
         
         switch game.imageConfig {
         case .image(let image):
-            gameImageView.image = image
+            gameImageView.image = UIImage(named: image)
             gameImageView.isHidden = false
             textImageView.isHidden = true
 //            gameImageView.tintColor = .systemGray
