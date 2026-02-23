@@ -40,17 +40,16 @@ class PlayHomeTableViewCell: UITableViewCell {
         self.backgroundColor = ColorPalette.backgroundColor
         
         switch game.imageConfig {
-        case .image(let image):
-            gameImageView.image = UIImage(named: image)
+        case .image(let imageName):
+            print("XXXXX image \(imageName)")
+            gameImageView.image = UIImage(systemName: imageName)
             gameImageView.isHidden = false
             textImageView.isHidden = true
-//            gameImageView.tintColor = .systemGray
         case .text(let text):
             textImageView.text = text
             textImageView.isHidden = false
             gameImageView.isHidden = true
         }
-        
         
         titleLabel.text = game.title
         highScoreLabel.text = "🔥 High Score: \(game.highScore)"

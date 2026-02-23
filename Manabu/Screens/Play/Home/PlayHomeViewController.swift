@@ -41,12 +41,6 @@ class PlayHomeViewController: UIViewController, Coordinating {
                 print("Error: \(error)")
             }
         }
-//        viewModel.oldFetchGames { games in 
-//            self.games = games
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
         configureTableView()
     }
     

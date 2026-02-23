@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             GameMode(
                 imageConfig: .text("お"),
                 title: "Guess the Hiragana",
-                highScore: 1,
+                highScore: 0,
                 event: .guessHiraganaTapped,
             ),
             GameMode(
@@ -71,13 +71,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 event: .guessRomanjiTapped,
             ),
             GameMode(
-                imageConfig: .image("draw"),
+                imageConfig: .image("pencil.and.outline"),
                 title: "Draw",
                 highScore: 0,
                 event: .drawTapped
             ),
             GameMode(
-                imageConfig: .image("listen"),
+                imageConfig: .image("waveform"),
                 title: "Listen",
                 highScore: 0,
                 event: .listenTapped

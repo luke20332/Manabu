@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 final class GuessHiraganaViewModel {
     
@@ -20,6 +21,10 @@ final class GuessHiraganaViewModel {
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4
     private var highScore: Int?
+    
+    // MARK: - CoreData
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var gameModeEntity: GameModeEntity?
     
     init() {
         getHighScore()
@@ -92,14 +97,16 @@ final class GuessHiraganaViewModel {
     }
     
     func getHighScore() {
-        PersistenceManager.retrieveHighScore { result in
-            switch result {
-            case .success(let score):
-                print(score)
-                self.highScore = score
-            case .failure:
-                break
-            }
+        do {
+            let request: NSFetchRequest<GameModeEntity> =  GameModeEntity.fetchRequest()
+
+            request.predicate = NSPredicate(format: "title contains 'Guess the Hiragana'")
+            
+            gameModeEntity = try context.fetch(request).first!
+            
+            self.highScore = Int(gameModeEntity?.highScore ?? 0)
+        } catch {
+            // default error
         }
     }
     
@@ -110,7 +117,13 @@ final class GuessHiraganaViewModel {
         
         if streak > highScore {
             self.highScore = streak
-            _ = PersistenceManager.saveHighScores(highScore: streak)
+            gameModeEntity?.highScore = Int64(streak)
+            
+            do {
+                try self.context.save()
+            } catch {
+                
+            }
         }
     }
 }
