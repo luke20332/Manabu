@@ -31,6 +31,8 @@ final class PlayHomeViewModel {
             completion(.failure(ManabuError.unableToFetchScores))
         }
     }
+    
+    
 
 //    func oldFetchGames(completion: @escaping ([GameMode]) -> Void) {
 //        PersistenceManager.retrieveHighScore { result in

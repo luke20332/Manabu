@@ -51,6 +51,12 @@ class GuessHiraganaViewController: UIViewController, Coordinating {
         viewModel.resetStreakCounter()
         bindViewModel()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        viewModel.updateHighScoreIfNeeded()
+    }
 }
 
 private extension GuessHiraganaViewController {

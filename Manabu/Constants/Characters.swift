@@ -106,7 +106,7 @@ let hiraganaDict: [String: String] = [
     "ゃ": "ya",
     "ゅ": "yu",
     "ょ": "yo",
-    "っ": "small tsu (consonant pause)",
+    "っ": "tsu",
     "ぁ": "a",
     "ぃ": "i",
     "ぅ": "u",

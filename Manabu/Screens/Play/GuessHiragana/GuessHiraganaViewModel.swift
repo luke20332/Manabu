@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreData
+import Combine
 
 final class GuessHiraganaViewModel {
     
@@ -20,6 +21,9 @@ final class GuessHiraganaViewModel {
     // MARK: - Private State
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4
+    var updateHighScore = PassthroughSubject<Int, Never>()
+    private var subscriptions = Set<AnyCancellable>()
+    
     private var highScore: Int?
     
     // MARK: - CoreData
@@ -27,8 +31,19 @@ final class GuessHiraganaViewModel {
     private var gameModeEntity: GameModeEntity?
     
     init() {
+        setUpSubscriptions()
         getHighScore()
         startNewRound()
+    }
+    
+    func setUpSubscriptions() {
+        updateHighScore
+            .filter({ $0 > 2 })
+            .sink { _ in
+            } receiveValue: { [weak self] result in
+                print("sink receive highscore", result)
+                self?.highScore = result
+            }.store(in: &subscriptions)
     }
     
     // MARK: - API called by VC
@@ -99,14 +114,13 @@ final class GuessHiraganaViewModel {
     func getHighScore() {
         do {
             let request: NSFetchRequest<GameModeEntity> =  GameModeEntity.fetchRequest()
-
             request.predicate = NSPredicate(format: "title contains 'Guess the Hiragana'")
-            
             gameModeEntity = try context.fetch(request).first!
-            
-            self.highScore = Int(gameModeEntity?.highScore ?? 0)
+
+            highScore = Int(gameModeEntity!.highScore)
         } catch {
             // default error
+            self.highScore = 0
         }
     }
     
@@ -117,12 +131,13 @@ final class GuessHiraganaViewModel {
         
         if streak > highScore {
             self.highScore = streak
+            updateHighScore.send(streak)
             gameModeEntity?.highScore = Int64(streak)
             
             do {
                 try self.context.save()
             } catch {
-                
+                print("XXXX error saving")
             }
         }
     }

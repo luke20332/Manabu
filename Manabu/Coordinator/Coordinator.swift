@@ -33,19 +33,6 @@ enum PlayEvent: String, CoordinatorEvent {
     case guessRomanjiTapped
     case drawTapped
     case listenTapped
-    
-//    var eventRaw: String {
-//        switch self {
-//        case .guessHiraganaTapped:
-//            "guessHiraganaTapped"
-//        case .guessRomanjiTapped:
-//            "guessRomanjiTapped"
-//        case .drawTapped:
-//            "drawTapped"
-//        case .listenTapped:
-//            "listenTapped"
-//        }
-//    }
 }
 
 enum LearnEvent: CoordinatorEvent {

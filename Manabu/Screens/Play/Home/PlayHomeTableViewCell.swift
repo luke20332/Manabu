@@ -41,7 +41,6 @@ class PlayHomeTableViewCell: UITableViewCell {
         
         switch game.imageConfig {
         case .image(let imageName):
-            print("XXXXX image \(imageName)")
             gameImageView.image = UIImage(systemName: imageName)
             gameImageView.isHidden = false
             textImageView.isHidden = true

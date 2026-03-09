@@ -29,19 +29,8 @@ class PlayHomeViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Play"
-        viewModel.fetchGames { result in
-            switch result {
-            case .success(let games):
-                self.games = games
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        }
-        configureTableView()
+        
+        
     }
     
     func configureTableView() {
@@ -57,6 +46,24 @@ class PlayHomeViewController: UIViewController, Coordinating {
     func setTableViewDelegates() {
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchGames { result in
+            switch result {
+            case .success(let games):
+                self.games = games
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+        configureTableView()
     }
 }
 
