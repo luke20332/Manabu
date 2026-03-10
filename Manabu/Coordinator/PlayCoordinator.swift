@@ -28,7 +28,7 @@ class PlayCoordinator: Coordinator {
         case .guessHiraganaTapped:
             playGuessHiragana()
         case .guessRomanjiTapped:
-            break
+            playGuessRomanji()
         case .drawTapped:
             break
         case .listenTapped:
@@ -47,9 +47,20 @@ class PlayCoordinator: Coordinator {
 
 private extension PlayCoordinator {
     func playGuessHiragana() {
-        var guessHiraganaVC: UIViewController & Coordinating = GuessHiraganaViewController()
+        var guessHiraganaVC: UIViewController & Coordinating = GuessViewController(
+            viewModel: GuessHiraganaViewModel()
+        )
         guessHiraganaVC.coordinator = self
         
         navigationController?.pushViewController(guessHiraganaVC, animated: true)
+    }
+    
+    func playGuessRomanji() {
+        var guessRomanjiVC: UIViewController & Coordinating = GuessViewController(
+            viewModel: GuessRomanjiViewModel()
+        )
+        guessRomanjiVC.coordinator = self
+        
+        navigationController?.pushViewController(guessRomanjiVC, animated: true)
     }
 }

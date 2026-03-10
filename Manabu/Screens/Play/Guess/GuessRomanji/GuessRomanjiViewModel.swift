@@ -1,8 +1,8 @@
 //
-//  PlayViewModel.swift
+//  GuessRomanjiViewModel.swift
 //  Manabu
 //
-//  Created by Luke on 21/01/2026.
+//  Created by Luke on 10/03/2026.
 //
 
 import Foundation
@@ -10,15 +10,13 @@ import UIKit
 import CoreData
 import Combine
 
-final class GuessHiraganaViewModel {
+final class GuessRomanjiViewModel: GuessViewModelProtocol {
     
-    // MARK: - VM Outputs
-    private(set) var streak: Int = 0
-    private(set) var prompt: String = ""
-    private(set) var options: [GuessPlayOption] = []
-    private(set) var shouldShowStreak: Bool = false
+    var streak: Int = 0
+    var prompt: String = ""
+    var options: [GuessPlayOption] = []
+    var shouldShowStreak: Bool = false
     
-    // MARK: - Private State
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4
     var updateHighScore = PassthroughSubject<Int, Never>()
@@ -26,7 +24,6 @@ final class GuessHiraganaViewModel {
     
     private var highScore: Int?
     
-    // MARK: - CoreData
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var gameModeEntity: GameModeEntity?
     
@@ -38,7 +35,6 @@ final class GuessHiraganaViewModel {
     
     func setUpSubscriptions() {
         updateHighScore
-            .filter({ $0 > 2 })
             .sink { _ in
             } receiveValue: { [weak self] result in
                 print("sink receive highscore", result)
@@ -52,7 +48,7 @@ final class GuessHiraganaViewModel {
             shouldShowStreak = true
         }
         
-        let (promptKey, correctAnswer) = hiraganaDict.randomElement()!
+        let (promptKey, correctAnswer) = romanjiDict.randomElement()!
         prompt = promptKey
         
         let correctIndex = Int.random(in: 0..<numberOfOptions)
@@ -61,14 +57,13 @@ final class GuessHiraganaViewModel {
         var incorrectOptions = Set<String>()
         
         while incorrectOptions.count < numberOfOptions - 1 {
-            let randomElement = hiraganaDict.randomElement()!.value
+            let randomElement = romanjiDict.randomElement()!.value
             
             guard randomElement != correctAnswer else { continue }
             
             incorrectOptions.insert(randomElement)
         }
         
-        // options is an array of PlayOptions, each with an index, title, and correct bool
         options = (0..<numberOfOptions).map { index in
             if index == correctIndex {
                 return GuessPlayOption(
@@ -92,7 +87,6 @@ final class GuessHiraganaViewModel {
         guard let selectedIndex = options.firstIndex(where: { $0.id == id }),
               let correctID = correctOptionID else { return }
                 
-        // check the answer - assign streak vals and assign state to playoptions
         if id == correctID {
             streak += 1
             options[selectedIndex].state = .correct
@@ -114,13 +108,12 @@ final class GuessHiraganaViewModel {
     func getHighScore() {
         do {
             let request: NSFetchRequest<GameModeEntity> =  GameModeEntity.fetchRequest()
-            request.predicate = NSPredicate(format: "title contains 'Guess the Hiragana'")
+            request.predicate = NSPredicate(format: "title contains 'Guess the Romanji'")
             gameModeEntity = try context.fetch(request).first!
 
-            highScore = Int(gameModeEntity!.highScore)
+            updateHighScore.send(Int(gameModeEntity!.highScore))
         } catch {
-            // default error
-            self.highScore = 0
+            updateHighScore.send(0)
         }
     }
     
@@ -130,7 +123,6 @@ final class GuessHiraganaViewModel {
         }
         
         if streak > highScore {
-            self.highScore = streak
             updateHighScore.send(streak)
             gameModeEntity?.highScore = Int64(streak)
             

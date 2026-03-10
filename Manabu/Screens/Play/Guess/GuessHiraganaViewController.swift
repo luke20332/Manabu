@@ -1,5 +1,5 @@
 //
-//  GuessHiraganaViewController.swift
+//  GuessViewController.swift
 //  Manabu
 //
 //  Created by Luke on 19/01/2026.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class GuessHiraganaViewController: UIViewController, Coordinating {
+class GuessViewController: UIViewController, Coordinating {
     var coordinator: Coordinator?
     
     enum Constants {
         static let buttonFontSize: CGFloat = 50
     }
     
-    private let viewModel = GuessHiraganaViewModel()
+    private let viewModel: GuessViewModelProtocol
     
     let streakCounterView = ManabuCounterLabel()
     
@@ -28,7 +28,16 @@ class GuessHiraganaViewController: UIViewController, Coordinating {
     let optionTwo = ManabuTextButton()
     let optionThree = ManabuTextButton()
     let optionFour = ManabuTextButton()
-
+    
+    init(viewModel: GuessViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +68,7 @@ class GuessHiraganaViewController: UIViewController, Coordinating {
     }
 }
 
-private extension GuessHiraganaViewController {
+private extension GuessViewController {
     func configureStreakCounter() {
         NSLayoutConstraint.activate([
             streakCounterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

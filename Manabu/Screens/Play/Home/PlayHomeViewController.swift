@@ -59,8 +59,14 @@ class PlayHomeViewController: UIViewController, Coordinating {
                     self.tableView.reloadData()
                 }
                 
-            case .failure(let error):
-                print("Error: \(error)")
+            case .failure:
+                let alert = UIAlertController(
+                    title: "Error!",
+                    message: "Error fetching game data. Please try again later.",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(alert, animated: true)
             }
         }
         configureTableView()

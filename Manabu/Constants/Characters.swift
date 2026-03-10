@@ -114,6 +114,99 @@ let hiraganaDict: [String: String] = [
     "ぉ": "o"
 ]
 
+let romanjiDict: [String: String] = [
+    // Vowels
+    "a": "あ",
+    "i": "い",
+    "u": "う",
+    "e": "え",
+    "o": "お",
+    
+    // K
+    "ka": "か",
+    "ki": "き",
+    "ku": "く",
+    "ke": "け",
+    "ko": "こ",
+    "ga": "が",
+    "gi": "ぎ",
+    "gu": "ぐ",
+    "ge": "げ",
+    "go": "ご",
+    
+    // S
+    "sa": "さ",
+    "shi": "し",
+    "su": "す",
+    "se": "せ",
+    "so": "そ",
+    "za": "ざ",
+    "ji": "じ",   // ぢ dropped (duplicate)
+    "zu": "ず",   // づ dropped (duplicate)
+    "ze": "ぜ",
+    "zo": "ぞ",
+    
+    // T
+    "ta": "た",
+    "chi": "ち",
+    "tsu": "つ", // っ dropped (duplicate)
+    "te": "て",
+    "to": "と",
+    "da": "だ",
+    "de": "で",
+    "do": "ど",
+    
+    // N
+    "na": "な",
+    "ni": "に",
+    "nu": "ぬ",
+    "ne": "ね",
+    "no": "の",
+    
+    // H
+    "ha": "は",
+    "hi": "ひ",
+    "fu": "ふ",
+    "he": "へ",
+    "ho": "ほ",
+    "ba": "ば",
+    "bi": "び",
+    "bu": "ぶ",
+    "be": "べ",
+    "bo": "ぼ",
+    "pa": "ぱ",
+    "pi": "ぴ",
+    "pu": "ぷ",
+    "pe": "ぺ",
+    "po": "ぽ",
+    
+    // M
+    "ma": "ま",
+    "mi": "み",
+    "mu": "む",
+    "me": "め",
+    "mo": "も",
+    
+    // Y
+    "ya": "や",
+    "yu": "ゆ",
+    "yo": "よ",
+    
+    // R
+    "ra": "ら",
+    "ri": "り",
+    "ru": "る",
+    "re": "れ",
+    "ro": "ろ",
+    
+    // W
+    "wa": "わ",
+    "wo": "を",
+    
+    // Special
+    "n": "ん",
+]
+
 
 let katakanaDict: [String: String] = [
     // Vowels
