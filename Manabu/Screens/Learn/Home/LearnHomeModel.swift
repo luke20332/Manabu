@@ -11,5 +11,6 @@ struct Syllabary {
     var title: String
     var image: String
     var charactersSeen: Int
+    var totalCharacters: Int
     var event: LearnEvent
 }

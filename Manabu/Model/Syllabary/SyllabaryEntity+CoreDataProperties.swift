@@ -23,6 +23,7 @@ extension SyllabaryEntity {
     @NSManaged public var id: UUID?
     @NSManaged public var title: String?
     @NSManaged public var image: String?
+    @NSManaged public var totalCharacters: Int64
 
 }
 

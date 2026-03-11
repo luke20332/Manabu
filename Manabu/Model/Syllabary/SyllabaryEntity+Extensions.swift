@@ -13,6 +13,7 @@ extension SyllabaryEntity {
             title: self.title ?? "",
             image: self.image ?? "",
             charactersSeen: Int(self.charactersSeen),
+            totalCharacters: Int(self.totalCharacters),
             event: LearnEvent(rawValue: self.eventRaw!)!
         )
     }

@@ -115,12 +115,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 title: "Hiragana",
                 image: "あ",
                 charactersSeen: 0,
+                totalCharacters: 46,
                 event: .hiraganaFlashCardsTapped
             ),
             Syllabary(
                 title: "Katakana",
                 image: "ア",
                 charactersSeen: 0,
+                totalCharacters: 46,
                 event: .katakanaFlashCardsTapped
             )
         ]
@@ -133,6 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             entity.eventRaw = syllabary.event.rawValue
             entity.charactersSeen = 0
             entity.image = syllabary.image
+            entity.totalCharacters = Int64(syllabary.totalCharacters)
             
             try? context.save()
         }

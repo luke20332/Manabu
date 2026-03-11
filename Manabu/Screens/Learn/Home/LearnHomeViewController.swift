@@ -57,7 +57,6 @@ class LearnHomeViewController: UIViewController, Coordinating {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             case .failure(let error):
                 let alert = UIAlertController(
                     title: "Error!",

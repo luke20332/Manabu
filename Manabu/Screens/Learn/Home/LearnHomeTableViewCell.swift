@@ -38,7 +38,7 @@ class LearnHomeTableViewCell: UITableViewCell {
         textImageView.text = syllabary.image
         
         titleLabel.text = syllabary.title
-        charactersSeenLabel.text = "\(syllabary.charactersSeen) / 100 Characters Seen"
+        charactersSeenLabel.text = "\(syllabary.charactersSeen) / \(syllabary.totalCharacters) Characters Seen"
     }
     
     func configureTextImageView() {
@@ -81,7 +81,7 @@ class LearnHomeTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             charactersSeenLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-            charactersSeenLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 20),
+            charactersSeenLabel.leadingAnchor.constraint(equalTo: textImageView.trailingAnchor, constant: 20),
             charactersSeenLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }

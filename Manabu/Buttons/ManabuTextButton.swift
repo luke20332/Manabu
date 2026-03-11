@@ -39,8 +39,8 @@ class ManabuTextButton: UIButton {
     }
     
     final func set(title: String, color: UIColor, fontSize: CGFloat, systemImageName: String?) {
-        configuration?.baseBackgroundColor = .clear
-//        configuration?.baseBackgroundColor = color
+//        configuration?.baseBackgroundColor = .clear
+        configuration?.baseBackgroundColor = color // 
         configuration?.baseForegroundColor = .label
         configuration?.title = title
         

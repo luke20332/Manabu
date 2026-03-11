@@ -132,7 +132,7 @@ private extension GuessViewController {
         let buttons = [optionOne, optionTwo, optionThree, optionFour]
         
         for (button, option) in zip(buttons, viewModel.options) {
-            button.set(title: option.title, color: ColorPalette.buttonColor, fontSize: Constants.buttonFontSize, systemImageName: nil)
+            button.set(title: option.title, color: ColorPalette.backgroundColor, fontSize: Constants.buttonFontSize, systemImageName: nil)
             
             switch option.state {
             case .normal:
