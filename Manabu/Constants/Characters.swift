@@ -258,7 +258,4 @@ let katakanaDict: [String: String] = [
 
     // Special
     "ン": "n",
-
-    // Long vowel marker
-    "ー": "-"
 ]

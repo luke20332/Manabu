@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         _ = persistentContainer
         seedGameModesIfNeeded()
+        seedSyllabariesIfNeeded()
         return true
     }
 
@@ -96,7 +97,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             try? context.save()
         }
+    }
+    
+    private func seedSyllabariesIfNeeded() {
+        let context = persistentContainer.viewContext
         
+        let request: NSFetchRequest<SyllabaryEntity> = SyllabaryEntity.fetchRequest()
+        
+        let count = (try? context.count(for: request)) ?? 0
+        
+        guard count == 0 else {
+            return
+        }
+        
+        let syllabaries: [Syllabary] = [
+            Syllabary(
+                title: "Hiragana",
+                image: "あ",
+                charactersSeen: 0,
+                event: .hiraganaFlashCardsTapped
+            ),
+            Syllabary(
+                title: "Katakana",
+                image: "ア",
+                charactersSeen: 0,
+                event: .katakanaFlashCardsTapped
+            )
+        ]
+        
+        for syllabary in syllabaries {
+            let entity = SyllabaryEntity(context: context)
+            
+            entity.id = UUID()
+            entity.title = syllabary.title
+            entity.eventRaw = syllabary.event.rawValue
+            entity.charactersSeen = 0
+            entity.image = syllabary.image
+            
+            try? context.save()
+        }
     }
 
     // MARK: - Core Data Saving support

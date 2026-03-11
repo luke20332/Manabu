@@ -25,12 +25,10 @@ class LearnCoordinator: Coordinator {
     
     func handleLearnEvent(_ type: LearnEvent) {
         switch type {
-        case .homeButtonTapped:
-            parentCoordinator?.navigationController?.tabBarController?.selectedIndex = 0
-        case .hirganaFlashCardsTapped:
-            break
-        case .romanjiFlashCardsTapped:
-            break
+        case .hiraganaFlashCardsTapped:
+            learnHiragana()
+        case .katakanaFlashCardsTapped:
+            learnKatakana()
         case .listenTapped:
             break
         case .drawTapped:
@@ -39,10 +37,20 @@ class LearnCoordinator: Coordinator {
     }
     
     func start() {
-        var learnViewController: UIViewController & Coordinating = LearnViewController()
-        learnViewController.coordinator = self
-        learnViewController.view.backgroundColor = ColorPalette.backgroundColor
+        var learnHomeViewController: UIViewController & Coordinating = LearnHomeViewController()
+        learnHomeViewController.coordinator = self
+        learnHomeViewController.view.backgroundColor = ColorPalette.backgroundColor
         
-        navigationController?.setViewControllers([learnViewController], animated: true)
+        navigationController?.setViewControllers([learnHomeViewController], animated: true)
+    }
+}
+
+private extension LearnCoordinator {
+    func learnHiragana() {
+        
+    }
+    
+    func learnKatakana() {
+        
     }
 }

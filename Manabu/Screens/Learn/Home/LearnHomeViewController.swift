@@ -1,21 +1,21 @@
 //
-//  PlayHomeViewController.swift
+//  LearnViewController.swift
 //  Manabu
 //
-//  Created by Luke on 21/01/2026.
+//  Created by Luke on 19/01/2026.
 //
 
 import UIKit
 
-class PlayHomeViewController: UIViewController, Coordinating {
-    var viewModel = PlayHomeViewModel()
+class LearnHomeViewController: UIViewController, Coordinating {
+    var viewModel = LearnViewModel()
     var coordinator: Coordinator?
     
     var tableView = UITableView()
-    var games: [GameMode] = []
+    var syllabaries: [Syllabary] = []
     
     struct Cells {
-        static let playHomeCells = "PlayCells"
+        static let learnHomeCells = "LearnCells"
     }
     
     init() {
@@ -28,15 +28,16 @@ class PlayHomeViewController: UIViewController, Coordinating {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Play"
+        title = "Learn"
     }
     
     func configureTableView() {
         view.addSubview(tableView)
-        tableView.backgroundColor = ColorPalette.backgroundColor
         setTableViewDelegates()
+        
+        tableView.backgroundColor = ColorPalette.backgroundColor
         tableView.rowHeight = 100
-        tableView.register(PlayHomeTableViewCell.self, forCellReuseIdentifier: Cells.playHomeCells)
+        tableView.register(LearnHomeTableViewCell.self, forCellReuseIdentifier: Cells.learnHomeCells)
         tableView.pin(to: view)
         tableView.separatorStyle = .none
     }
@@ -49,10 +50,10 @@ class PlayHomeViewController: UIViewController, Coordinating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.fetchGames { result in
+        viewModel.fetchSyllabaries { result in
             switch result {
-            case .success(let games):
-                self.games = games
+            case .success(let syllabaries):
+                self.syllabaries = syllabaries
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -71,21 +72,21 @@ class PlayHomeViewController: UIViewController, Coordinating {
     }
 }
 
-extension PlayHomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension LearnHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games.count
+        return syllabaries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.playHomeCells) as! PlayHomeTableViewCell
-        let game = games[indexPath.row]
-        cell.set(game: game)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.learnHomeCells) as! LearnHomeTableViewCell
+        let syllabary = syllabaries[indexPath.row]
+        cell.set(syllabary: syllabary)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let event = games[indexPath.row].event
+        let event = syllabaries[indexPath.row].event
         
         coordinator?.eventOccurred(with: event)
     }

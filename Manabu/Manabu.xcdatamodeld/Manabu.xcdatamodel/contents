@@ -8,4 +8,11 @@
         <attribute name="imageValue" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="SyllabaryEntity" representedClassName=".SyllabaryEntity" syncable="YES">
+        <attribute name="charactersSeen" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="eventRaw" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
 </model>

@@ -74,7 +74,7 @@ private extension MainCoordinator {
         let learnNavigationController = UINavigationController()
         
         learnNavigationController.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
-        learnNavigationController.navigationBar.prefersLargeTitles = true
+//        learnNavigationController.navigationBar.prefersLargeTitles = true
         
         learnCoordinator = LearnCoordinator(navigationController: learnNavigationController)
         learnCoordinator?.parentCoordinator = self
