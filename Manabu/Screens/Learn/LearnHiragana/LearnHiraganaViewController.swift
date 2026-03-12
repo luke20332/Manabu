@@ -66,7 +66,7 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
     
     func configureStackView() {
         buttonStackView.axis = .horizontal
-        buttonStackView.distribution = .fillEqually
+        buttonStackView.distribution = .fillProportionally
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         
         buttonStackView.addArrangedSubview(leftButton)
@@ -74,7 +74,8 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
         
         NSLayoutConstraint.activate([
             buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
-            buttonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonStackView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
@@ -98,10 +99,10 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
 
 private extension LearnHiraganaViewController {
     @objc func previousButtonTapped() {
-        flashcardView.set(viewModel.previousCharacter() ?? "error", fontSize: 50)
+        flashcardView.set(viewModel.previousCharacter() ?? "", fontSize: 50)
     }
     
     @objc func nextButtonTapped() {
-        flashcardView.set(viewModel.nextCharacter() ?? "error", fontSize: 50)
+        flashcardView.set(viewModel.nextCharacter() ?? "", fontSize: 50)
     }
 }

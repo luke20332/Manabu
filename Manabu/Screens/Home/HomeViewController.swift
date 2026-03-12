@@ -51,9 +51,9 @@ private extension HomeViewController {
         
         NSLayoutConstraint.activate([
             translationView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30),
-            translationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            translationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            translationView.heightAnchor.constraint(equalToConstant: 75)
+            translationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            translationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            translationView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     

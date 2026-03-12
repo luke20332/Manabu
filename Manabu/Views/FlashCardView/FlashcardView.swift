@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class FlashcardView: UIView {
-    var currentCharacter: (String, String)?
+    var currentCharacter: CharacterPair?
     let syllabary: SyllabaryType
     
     var textLabel = UILabel()
@@ -17,7 +17,10 @@ class FlashcardView: UIView {
     
     required init(syllabary: SyllabaryType) {
         self.syllabary = syllabary
+        self.currentCharacter = .init(japanese: "", english: "")
+        
         super.init(frame: .zero)
+        
         configure()
         setupTextLabel()
     }
@@ -27,22 +30,29 @@ class FlashcardView: UIView {
     }
     
     func set(_ character: String, fontSize: CGFloat) {
-        currentCharacter?.0 = character
+        currentCharacter?.japanese = character
+        
         switch syllabary {
         case .hiragana:
-            currentCharacter?.1 = hiraganaDict[character]!
+            if let reverseCharacter = hiraganaDict[character] {
+                currentCharacter?.english = reverseCharacter
+            }
         case .katakana:
-            currentCharacter?.1 = katakanaDict[character]!
+            if let reverseCharacter = hiraganaDict[character] {
+                currentCharacter?.english = reverseCharacter
+            }
         }
+        
         textLabel.text = character
         textLabel.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
     
+    
     @objc func reverse() {
         if isReversed {
-            textLabel.text = currentCharacter?.0
+            textLabel.text = currentCharacter?.japanese
         } else {
-            textLabel.text = currentCharacter?.1
+            textLabel.text = currentCharacter?.english
         }
         
         isReversed.toggle()
@@ -70,5 +80,12 @@ class FlashcardView: UIView {
             textLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             textLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
+    }
+}
+
+extension FlashcardView {
+    struct CharacterPair {
+        var japanese: String
+        var english: String
     }
 }

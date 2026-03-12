@@ -11,35 +11,42 @@ class LearnHiraganaViewModel {
     let syllabary: SyllabaryType
     
     var seenCharacters: [String] = []
+    var currentIndex: Int = 0
     var currentCharacter: String?
+    
+    lazy var characters: [String] = {
+        switch syllabary {
+        case .hiragana:
+            return Array(hiraganaDict.keys)
+        case .katakana:
+            return Array(katakanaDict.keys)
+        }
+    }()
     
     init(syllabary: SyllabaryType) {
         self.syllabary = syllabary
-        self.currentCharacter = nextCharacter()
+        self.currentCharacter = characters[0]
     }
     
     @objc func nextCharacter() -> String? {
-        switch syllabary {
-        case .hiragana:
-            currentCharacter = hiraganaDict.randomElement()!.key
-        case .katakana:
-            currentCharacter = katakanaDict.randomElement()!.key
-        }
+        currentIndex += 1
+        currentCharacter = characters[currentIndex]
         
         guard let currentCharacter else {
             return nil
         }
-        
         seenCharacters.append(currentCharacter)
         return currentCharacter
     }
     
     @objc func previousCharacter() -> String? {
-        if seenCharacters.count < 1 {
-            return nil
+        if seenCharacters.count < 1 || currentIndex == 0 {
+            currentCharacter = characters[0]
         } else {
-            return seenCharacters.last
+            currentIndex -= 1
+            currentCharacter = characters[currentIndex]
         }
+        return currentCharacter
     }
     
     func save() {
