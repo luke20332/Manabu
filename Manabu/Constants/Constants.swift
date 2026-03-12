@@ -25,4 +25,11 @@ enum Images {
 enum ColorPalette {
     static let backgroundColor: UIColor = .systemGray6
     static let buttonColor: UIColor = .darkGray
+    
+    static let paper: UIColor = .init(
+        red: 0.97,
+        green: 0.95,
+        blue: 0.88,
+        alpha: 1.0
+    )
 }

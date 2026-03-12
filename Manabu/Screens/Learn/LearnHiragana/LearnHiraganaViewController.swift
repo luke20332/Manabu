@@ -84,9 +84,10 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
         guard let character = viewModel.currentCharacter else {
             return
         }
-        
-        flashcardView.set(character, fontSize: 50)
+    
         flashcardView.translatesAutoresizingMaskIntoConstraints = false
+        flashcardView.set(character)
+//        flashcardView.layer.cornerRadius = 50
         
         NSLayoutConstraint.activate([
             flashcardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -99,10 +100,10 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
 
 private extension LearnHiraganaViewController {
     @objc func previousButtonTapped() {
-        flashcardView.set(viewModel.previousCharacter() ?? "", fontSize: 50)
+        flashcardView.set(viewModel.previousCharacter() ?? "")
     }
     
     @objc func nextButtonTapped() {
-        flashcardView.set(viewModel.nextCharacter() ?? "", fontSize: 50)
+        flashcardView.set(viewModel.nextCharacter() ?? "")
     }
 }

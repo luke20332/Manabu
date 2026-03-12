@@ -29,7 +29,7 @@ class FlashcardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(_ character: String, fontSize: CGFloat) {
+    func set(_ character: String) {
         currentCharacter?.japanese = character
         
         switch syllabary {
@@ -44,7 +44,6 @@ class FlashcardView: UIView {
         }
         
         textLabel.text = character
-        textLabel.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
     }
     
     
@@ -54,17 +53,20 @@ class FlashcardView: UIView {
         } else {
             textLabel.text = currentCharacter?.english
         }
-        
+
         isReversed.toggle()
     }
     
     func configure() {
-        textLabel.layer.cornerRadius = 50
+        layer.cornerRadius = 50
+        clipsToBounds = true
         
         textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.textColor = .systemBackground
-        textLabel.backgroundColor = .label
+        textLabel.textColor = .systemGray
+        textLabel.backgroundColor = ColorPalette.paper
         textLabel.textAlignment = .center
+        textLabel.font = UIFont.systemFont(ofSize: 100, weight: .bold)
+
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(reverse))
         
@@ -87,5 +89,9 @@ extension FlashcardView {
     struct CharacterPair {
         var japanese: String
         var english: String
+    }
+    
+    enum Constants {
+        static let textSize: CGFloat = 100
     }
 }
