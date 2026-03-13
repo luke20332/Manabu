@@ -13,7 +13,7 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
     
     private let viewModel: LearnHiraganaViewModel
     
-    let flashcardView = FlashcardView(syllabary: .hiragana)
+    let flashcardView = FlashcardView(syllabary: .hiragana, reversingAllowed: true)
     
     let buttonStackView = UIStackView()
     let leftButton = ManabuTextButton()

@@ -18,7 +18,8 @@ class GuessViewController: UIViewController, Coordinating {
     
     let streakCounterView = ManabuCounterLabel()
     
-    let characterView = ManabuTextLabel(fontSize: 160)
+//    let characterView = ManabuTextLabel(fontSize: 160)
+    lazy var characterView = FlashcardView(syllabary: viewModel.syllabary)
     
     let topStackView = UIStackView()
     let bottomStackView = UIStackView()
@@ -78,10 +79,12 @@ private extension GuessViewController {
     }
     
     func configureCharacter() {
+        characterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            characterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            characterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            characterView.heightAnchor.constraint(equalToConstant: 400)
+            characterView.topAnchor.constraint(equalTo: streakCounterView.bottomAnchor),
+            characterView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            characterView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            characterView.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: -20)
         ])
     }
     
@@ -124,7 +127,8 @@ private extension GuessViewController {
     }
     
     func bindViewModel() {
-        characterView.text = viewModel.prompt
+//        characterView.text = viewModel.prompt
+        characterView.set(viewModel.prompt)
         
         streakCounterView.isHidden = !viewModel.shouldShowStreak
         streakCounterView.setCount(viewModel.streak)

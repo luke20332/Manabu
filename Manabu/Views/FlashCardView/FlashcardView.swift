@@ -14,9 +14,11 @@ class FlashcardView: UIView {
     
     var textLabel = UILabel()
     var isReversed: Bool = false
+    var reversingAllowed: Bool = false
     
-    required init(syllabary: SyllabaryType) {
+    required init(syllabary: SyllabaryType, reversingAllowed: Bool = false) {
         self.syllabary = syllabary
+        self.reversingAllowed = reversingAllowed
         self.currentCharacter = .init(japanese: "", english: "")
         
         super.init(frame: .zero)
@@ -48,6 +50,9 @@ class FlashcardView: UIView {
     
     
     @objc func reverse() {
+        guard reversingAllowed else {
+            return
+        }
         if isReversed {
             textLabel.text = currentCharacter?.japanese
         } else {

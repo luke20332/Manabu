@@ -16,6 +16,7 @@ final class GuessRomanjiViewModel: GuessViewModelProtocol {
     var prompt: String = ""
     var options: [GuessPlayOption] = []
     var shouldShowStreak: Bool = false
+    var syllabary: SyllabaryType = .katakana
     
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4

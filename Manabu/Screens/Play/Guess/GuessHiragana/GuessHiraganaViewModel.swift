@@ -17,6 +17,7 @@ final class GuessHiraganaViewModel: GuessViewModelProtocol {
     var prompt: String = ""
     var options: [GuessPlayOption] = []
     var shouldShowStreak: Bool = false
+    var syllabary: SyllabaryType = .hiragana
     
     // MARK: - Private State
     private var correctOptionID: Int?

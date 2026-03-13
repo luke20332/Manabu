@@ -16,4 +16,5 @@ protocol GuessViewModelProtocol {
     var shouldShowStreak: Bool { get set }
     var streak: Int { get set }
     var options: [GuessPlayOption] { get set }
+    var syllabary: SyllabaryType { get }
 }
