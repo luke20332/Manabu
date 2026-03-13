@@ -1,5 +1,5 @@
 //
-//  LearnViewModel.swift
+//  LearnHomeViewModel.swift
 //  Manabu
 //
 //  Created by Luke on 10/03/2026.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreData
 
-final class LearnViewModel {
+final class LearnHomeViewModel {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var syllabaryEntities: [SyllabaryEntity]?

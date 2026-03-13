@@ -1,5 +1,5 @@
 //
-//  LearnHiraganaViewController.swift
+//  LearnViewController.swift
 //  Manabu
 //
 //  Created by Luke on 11/03/2026.
@@ -8,18 +8,18 @@
 import Foundation
 import UIKit
 
-class LearnHiraganaViewController: UIViewController, Coordinating {
+class LearnViewController: UIViewController, Coordinating {
     var coordinator: Coordinator?
     
-    private let viewModel: LearnHiraganaViewModel
+    private let viewModel: LearnViewModel
     
-    let flashcardView = FlashcardView(syllabary: .hiragana, reversingAllowed: true)
+    lazy var flashcardView = FlashcardView(syllabary: viewModel.syllabary, reversingAllowed: true)
     
     let buttonStackView = UIStackView()
     let leftButton = ManabuTextButton()
     let rightButton = ManabuTextButton()
     
-    init(viewModel: LearnHiraganaViewModel) {
+    init(viewModel: LearnViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -87,7 +87,6 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
     
         flashcardView.translatesAutoresizingMaskIntoConstraints = false
         flashcardView.set(character)
-//        flashcardView.layer.cornerRadius = 50
         
         NSLayoutConstraint.activate([
             flashcardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -98,7 +97,7 @@ class LearnHiraganaViewController: UIViewController, Coordinating {
     }
 }
 
-private extension LearnHiraganaViewController {
+private extension LearnViewController {
     @objc func previousButtonTapped() {
         flashcardView.set(viewModel.previousCharacter() ?? "")
     }

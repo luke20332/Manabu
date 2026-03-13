@@ -47,13 +47,16 @@ class LearnCoordinator: Coordinator {
 
 private extension LearnCoordinator {
     func learnHiragana() {
-        var learnHiraganaViewController: UIViewController & Coordinating = LearnHiraganaViewController(viewModel: LearnHiraganaViewModel(syllabary: .hiragana))
+        var learnHiraganaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .hiragana))
         learnHiraganaViewController.coordinator = self
         
         navigationController?.pushViewController(learnHiraganaViewController, animated: true)
     }
     
     func learnKatakana() {
+        var learnKatakanaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .katakana))
+        learnKatakanaViewController.coordinator = self
         
+        navigationController?.pushViewController(learnKatakanaViewController, animated: true)
     }
 }

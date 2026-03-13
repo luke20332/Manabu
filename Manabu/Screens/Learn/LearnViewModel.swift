@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LearnHiraganaViewModel {
+class LearnViewModel: LearnViewModelProtocol {
     let syllabary: SyllabaryType
     
     var seenCharacters: [String] = []
@@ -53,9 +53,4 @@ class LearnHiraganaViewModel {
         // save characters seen number to coredata
         // ideally save the seen characters as well
     }
-}
-
-enum SyllabaryType {
-    case hiragana
-    case katakana
 }

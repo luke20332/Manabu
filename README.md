@@ -30,6 +30,10 @@ My idea is to take an offline first approach, where the hiragana characters are 
 - **Offline Support** - Access your lessons anytime, anywhere
 - **Clean Architecture** - Built with MVVM and Coordinator patterns for maintainability
 
+<p align="center">
+  <img src="https://github.com/luke20332/Manabu/blob/main/images/flashcard.png" width="30%" />
+</p>
+
 ## Architecture
 
 This project follows modern iOS development practices and design patterns:

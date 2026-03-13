@@ -40,7 +40,7 @@ class FlashcardView: UIView {
                 currentCharacter?.english = reverseCharacter
             }
         case .katakana:
-            if let reverseCharacter = hiraganaDict[character] {
+            if let reverseCharacter = katakanaDict[character] {
                 currentCharacter?.english = reverseCharacter
             }
         }
@@ -53,6 +53,7 @@ class FlashcardView: UIView {
         guard reversingAllowed else {
             return
         }
+        
         if isReversed {
             textLabel.text = currentCharacter?.japanese
         } else {

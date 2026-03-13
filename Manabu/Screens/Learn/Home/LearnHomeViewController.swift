@@ -8,7 +8,7 @@
 import UIKit
 
 class LearnHomeViewController: UIViewController, Coordinating {
-    var viewModel = LearnViewModel()
+    var viewModel = LearnHomeViewModel()
     var coordinator: Coordinator?
     
     var tableView = UITableView()

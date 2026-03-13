@@ -127,7 +127,6 @@ private extension GuessViewController {
     }
     
     func bindViewModel() {
-//        characterView.text = viewModel.prompt
         characterView.set(viewModel.prompt)
         
         streakCounterView.isHidden = !viewModel.shouldShowStreak
