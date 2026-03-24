@@ -7,11 +7,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class MainCoordinator: Coordinator {
     var tabBarController: UITabBarController?
     var navigationController: UINavigationController?
     var children: [Coordinator]? = []
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     private var playCoordinator: PlayCoordinator?
     private var learnCoordinator: LearnCoordinator?
@@ -74,9 +77,8 @@ private extension MainCoordinator {
         let learnNavigationController = UINavigationController()
         
         learnNavigationController.tabBarItem = UITabBarItem(title: "Learn", image: SFSymbols.learn, tag: 1)
-//        learnNavigationController.navigationBar.prefersLargeTitles = true
         
-        learnCoordinator = LearnCoordinator(navigationController: learnNavigationController)
+        learnCoordinator = LearnCoordinator(navigationController: learnNavigationController, context: context)
         learnCoordinator?.parentCoordinator = self
         children?.append(learnCoordinator!)
         learnCoordinator?.start()
@@ -87,9 +89,8 @@ private extension MainCoordinator {
     func createPlayNavigationController() -> UINavigationController {
         let playNavigationController = UINavigationController()
         playNavigationController.tabBarItem = UITabBarItem(title: "Play", image: SFSymbols.play, tag: 2)
-//        playNavigationController.navigationBar.prefersLargeTitles = true
 
-        playCoordinator = PlayCoordinator(navigationController: playNavigationController)
+        playCoordinator = PlayCoordinator(navigationController: playNavigationController, context: context)
         playCoordinator?.parentCoordinator = self
         children?.append(playCoordinator!)
         playCoordinator?.start()

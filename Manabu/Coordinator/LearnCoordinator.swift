@@ -7,14 +7,21 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class LearnCoordinator: Coordinator {
     var navigationController: UINavigationController?
     var parentCoordinator: Coordinator?
     var children: [any Coordinator]?
     
-    init(navigationController: UINavigationController) {
+    private var context: NSManagedObjectContext
+    
+    init(
+        navigationController: UINavigationController,
+        context: NSManagedObjectContext
+    ) {
         self.navigationController = navigationController
+        self.context = context
     }
     
     func eventOccurred(with type: any CoordinatorEvent) {
@@ -47,14 +54,14 @@ class LearnCoordinator: Coordinator {
 
 private extension LearnCoordinator {
     func learnHiragana() {
-        var learnHiraganaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .hiragana))
+        var learnHiraganaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .hiragana, context: context))
         learnHiraganaViewController.coordinator = self
         
         navigationController?.pushViewController(learnHiraganaViewController, animated: true)
     }
     
     func learnKatakana() {
-        var learnKatakanaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .katakana))
+        var learnKatakanaViewController: UIViewController & Coordinating = LearnViewController(viewModel: LearnViewModel(syllabary: .katakana, context: context))
         learnKatakanaViewController.coordinator = self
         
         navigationController?.pushViewController(learnKatakanaViewController, animated: true)

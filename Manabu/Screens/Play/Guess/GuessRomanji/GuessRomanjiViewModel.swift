@@ -25,10 +25,11 @@ final class GuessRomanjiViewModel: GuessViewModelProtocol {
     
     private var highScore: Int?
     
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context: NSManagedObjectContext
     private var gameModeEntity: GameModeEntity?
     
-    init() {
+    init(context: NSManagedObjectContext) {
+        self.context = context
         setUpSubscriptions()
         getHighScore()
         startNewRound()

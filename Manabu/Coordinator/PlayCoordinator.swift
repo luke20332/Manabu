@@ -6,15 +6,22 @@
 //
 
 import UIKit
+import CoreData
 
 class PlayCoordinator: Coordinator {
     var children: [any Coordinator]?
     
     var navigationController: UINavigationController?
     var parentCoordinator: Coordinator?
+    
+    private var context: NSManagedObjectContext
 
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        context: NSManagedObjectContext
+    ) {
         self.navigationController = navigationController
+        self.context = context
     }
     
     func eventOccurred(with type: CoordinatorEvent) {
@@ -48,7 +55,7 @@ class PlayCoordinator: Coordinator {
 private extension PlayCoordinator {
     func playGuessHiragana() {
         var guessHiraganaVC: UIViewController & Coordinating = GuessViewController(
-            viewModel: GuessHiraganaViewModel()
+            viewModel: GuessHiraganaViewModel(context: context)
         )
         guessHiraganaVC.coordinator = self
         
@@ -57,7 +64,7 @@ private extension PlayCoordinator {
     
     func playGuessRomanji() {
         var guessRomanjiVC: UIViewController & Coordinating = GuessViewController(
-            viewModel: GuessRomanjiViewModel()
+            viewModel: GuessRomanjiViewModel(context: context)
         )
         guessRomanjiVC.coordinator = self
         

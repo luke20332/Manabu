@@ -12,7 +12,7 @@ import Combine
 
 class LearnViewModel: LearnViewModelProtocol {
     let syllabary: SyllabaryType
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private let context: NSManagedObjectContext
     
     var seenCharacters: [String] = []
     var currentIndex: Int = 0
@@ -35,8 +35,9 @@ class LearnViewModel: LearnViewModelProtocol {
         }
     }()
     
-    init(syllabary: SyllabaryType) {
+    init(syllabary: SyllabaryType, context: NSManagedObjectContext) {
         self.syllabary = syllabary
+        self.context = context
         self.currentCharacter = characters[0]
         setupSubscriptions()
         do {
