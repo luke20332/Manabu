@@ -41,6 +41,21 @@ class LearnViewController: UIViewController, Coordinating {
         configureStackView()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        do {
+            try viewModel.save()
+        } catch {
+            print("Error, cannot increment characters seen")
+            return
+        }
+        
+        if let navigationController = coordinator?.navigationController {
+            navigationController.popViewController(animated: true)
+        }
+    }
+    
     func configureButtons() {
         leftButton.set(
             title: "<",
@@ -59,9 +74,6 @@ class LearnViewController: UIViewController, Coordinating {
         leftButton.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
         
         rightButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        
-        leftButton.tintColor = .red
-        rightButton.tintColor = .blue
     }
     
     func configureStackView() {
@@ -104,5 +116,10 @@ private extension LearnViewController {
     
     @objc func nextButtonTapped() {
         flashcardView.set(viewModel.nextCharacter() ?? "")
+        do {
+            try viewModel.incrementCharactersSeen()
+        } catch {
+            return
+        }
     }
 }

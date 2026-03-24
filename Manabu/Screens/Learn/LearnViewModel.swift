@@ -6,13 +6,23 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
+import Combine
 
 class LearnViewModel: LearnViewModelProtocol {
     let syllabary: SyllabaryType
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var seenCharacters: [String] = []
     var currentIndex: Int = 0
     var currentCharacter: String?
+    var updateCharactersSeen = PassthroughSubject<Int, Never>()
+    
+    private var syllabaryEntity: SyllabaryEntity?
+    private var subscriptions = Set<AnyCancellable>()
+    private var currentCharactersSeen: Int = 0
+    
     
     lazy var characters: [String] = {
         switch syllabary {
@@ -20,12 +30,34 @@ class LearnViewModel: LearnViewModelProtocol {
             return Array(hiraganaDict.keys)
         case .katakana:
             return Array(katakanaDict.keys)
+        case .romanji:
+            return []
         }
     }()
     
     init(syllabary: SyllabaryType) {
         self.syllabary = syllabary
         self.currentCharacter = characters[0]
+        setupSubscriptions()
+        do {
+            try fetchSyllabaryEntity()
+        } catch {
+            return
+        }
+    }
+    
+    func setupSubscriptions() {
+        updateCharactersSeen
+            .sink { _ in
+            } receiveValue: { [weak self] result in
+                self?.syllabaryEntity?.charactersSeen = Int64(result)
+                do {
+                    try self?.save()
+                } catch {
+                    return
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     @objc func nextCharacter() -> String? {
@@ -49,8 +81,30 @@ class LearnViewModel: LearnViewModelProtocol {
         return currentCharacter
     }
     
-    func save() {
-        // save characters seen number to coredata
-        // ideally save the seen characters as well
+    func fetchSyllabaryEntity() throws {
+        let request: NSFetchRequest<SyllabaryEntity> =  SyllabaryEntity.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "title contains[c] %@", syllabary.rawValue)
+        request.fetchLimit = 1
+        
+        guard let entity = try context.fetch(request).first else {
+            throw ManabuError.unableToFetchSyllabaries
+        }
+        
+        syllabaryEntity = entity
+    }
+    
+    func incrementCharactersSeen() throws {
+        currentCharactersSeen += 1
+        updateCharactersSeen.send(currentCharactersSeen)
+    }
+    
+    func save() throws {
+        do {
+            try self.context.save()
+        } catch {
+            print("Saving error")
+            throw ManabuError.unableToUpdate
+        }
     }
 }

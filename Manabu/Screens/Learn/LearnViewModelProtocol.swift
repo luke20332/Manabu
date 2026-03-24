@@ -15,5 +15,7 @@ protocol LearnViewModelProtocol {
     var currentCharacter: String? { get set }
     var characters: [String] { get set }
     
-    func save()
+    func fetchSyllabaryEntity() throws
+    func incrementCharactersSeen() throws
+    func save() throws
 }

@@ -16,7 +16,7 @@ final class GuessRomanjiViewModel: GuessViewModelProtocol {
     var prompt: String = ""
     var options: [GuessPlayOption] = []
     var shouldShowStreak: Bool = false
-    var syllabary: SyllabaryType = .katakana
+    var syllabary: SyllabaryType = .hiragana
     
     private var correctOptionID: Int?
     private var numberOfOptions: Int = 4
@@ -38,7 +38,6 @@ final class GuessRomanjiViewModel: GuessViewModelProtocol {
         updateHighScore
             .sink { _ in
             } receiveValue: { [weak self] result in
-                print("sink receive highscore", result)
                 self?.highScore = result
             }.store(in: &subscriptions)
     }

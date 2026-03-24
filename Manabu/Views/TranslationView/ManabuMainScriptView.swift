@@ -46,7 +46,7 @@ class ManabuMainScriptView: UIView {
     
     private func configureHiraganaText() {
         hiraganaText.text = "まな"
-        hiraganaText.textColor = .label
+        hiraganaText.textColor = .systemGray
         hiraganaText.font = .systemFont(ofSize: 12)
         hiraganaText.lineBreakMode = .byTruncatingTail
         hiraganaText.minimumScaleFactor = 0.9
@@ -55,7 +55,7 @@ class ManabuMainScriptView: UIView {
     
     private func configureKanjiText() {
         kanjiText.text = "学ぶ"
-        kanjiText.textColor = .label
+        kanjiText.textColor = .systemGray
         kanjiText.font = .systemFont(ofSize: 35)
         kanjiText.lineBreakMode = .byTruncatingTail
         kanjiText.minimumScaleFactor = 0.9

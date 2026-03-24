@@ -67,11 +67,3 @@ enum PartOfSpeech {
     case conjunction
     case interjection
 }
-
-/*
- private var text: String
- private var romanji: String
- private var pronounciation: String
- private var pos: PartOfSpeech
- private var definitions: [String]
- */

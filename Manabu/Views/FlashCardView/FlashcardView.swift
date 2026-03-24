@@ -43,11 +43,12 @@ class FlashcardView: UIView {
             if let reverseCharacter = katakanaDict[character] {
                 currentCharacter?.english = reverseCharacter
             }
+        case .romanji:
+            print("XXX ROMANJI")
         }
         
         textLabel.text = character
     }
-    
     
     @objc func reverse() {
         guard reversingAllowed else {

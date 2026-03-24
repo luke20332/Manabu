@@ -47,7 +47,7 @@ class ManabuTranslationInfoView: UIView {
     
     private func configurePronounciation() {
         pronounciationLabel.text = "Manabu | Ma-na-bu | verb"
-        pronounciationLabel.textColor = .secondaryLabel
+        pronounciationLabel.textColor = .systemGray
         pronounciationLabel.textAlignment = .left
         pronounciationLabel.numberOfLines = 0
     }
@@ -56,8 +56,8 @@ class ManabuTranslationInfoView: UIView {
         translationOne.text = "1. To Learn"
         translationTwo.text = "2. To Study"
         
-        translationOne.textColor = .secondaryLabel
-        translationTwo.textColor = .secondaryLabel
+        translationOne.textColor = .systemGray
+        translationTwo.textColor = .systemGray
         
         translationOne.textAlignment = .left
         translationTwo.textAlignment = .left

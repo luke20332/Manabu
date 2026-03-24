@@ -47,13 +47,13 @@ private extension HomeViewController {
         
         translationView.translatesAutoresizingMaskIntoConstraints = false
         translationView.layer.cornerRadius = 10
-        translationView.backgroundColor = .systemGray4
+        translationView.backgroundColor = ColorPalette.paper
         
         NSLayoutConstraint.activate([
             translationView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 30),
             translationView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             translationView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            translationView.heightAnchor.constraint(equalToConstant: 100)
+            translationView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
     

@@ -18,7 +18,6 @@ class GuessViewController: UIViewController, Coordinating {
     
     let streakCounterView = ManabuCounterLabel()
     
-//    let characterView = ManabuTextLabel(fontSize: 160)
     lazy var characterView = FlashcardView(syllabary: viewModel.syllabary)
     
     let topStackView = UIStackView()
@@ -62,10 +61,14 @@ class GuessViewController: UIViewController, Coordinating {
         bindViewModel()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
         viewModel.updateHighScoreIfNeeded()
+        
+        if let navigationController = coordinator?.navigationController {
+            navigationController.popViewController(animated: true)
+        }
     }
 }
 
