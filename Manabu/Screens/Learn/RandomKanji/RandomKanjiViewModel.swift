@@ -8,8 +8,8 @@
 protocol RandomKanjiViewModelProtocol {
     var dataProvider: KanjiDataProviderProtocol { get set }
     
-    func getRandomCharacter() -> Character
-    func fetchCharacterInformation(character: Character) async throws -> KanjiInformation
+    func getRandomCharacter() -> String
+    func fetchCharacterInformation(character: String) async throws -> KanjiInformation
 }
 
 final class RandomKanjiViewModel: RandomKanjiViewModelProtocol {
@@ -19,14 +19,18 @@ final class RandomKanjiViewModel: RandomKanjiViewModelProtocol {
         self.dataProvider = dataProvider
     }
     
-    func getRandomCharacter() -> Character {
+    func getRandomCharacterFromCJK() -> Character {
         let start: UInt32 = 0x4E00
         let end: UInt32 = 0x9FFF
         let randomCodePoint = UInt32.random(in: start...end)
         return Character(UnicodeScalar(randomCodePoint)!)
     }
     
-    func fetchCharacterInformation(character: Character) async throws -> KanjiInformation {
+    func getRandomCharacter() -> String {
+        joyoKanjiDict.randomElement()!
+    }
+    
+    func fetchCharacterInformation(character: String) async throws -> KanjiInformation {
         return try await dataProvider.fetchKanjiInformation(character).toModel()
     }
 }

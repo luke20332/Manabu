@@ -14,7 +14,7 @@ class RandomKanjiViewController: UIViewController, Coordinating {
     
     private var flashcardView = FlashcardView(syllabary: .kanji)
     private var translationView = ManabuHomeTranslationView()
-    private var character: Character {
+    private var character: String {
         viewModel.getRandomCharacter()
     }
     
@@ -84,9 +84,9 @@ class RandomKanjiViewController: UIViewController, Coordinating {
                 let characterInformation = try await viewModel.fetchCharacterInformation(character: character)
                 
                 await MainActor.run {
-                    flashcardView.set(String(character))
+                    flashcardView.set(character)
                     translationView.set(
-                        hiraganaTranslation: String(character),
+                        hiraganaTranslation: character,
                         kanji: characterInformation.kanji,
                         definitions: characterInformation.meanings,
                         pronounciation: characterInformation.heisig ?? "?"

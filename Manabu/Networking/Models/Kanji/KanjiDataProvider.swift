@@ -9,7 +9,7 @@ import Foundation
 
 protocol KanjiDataProviderProtocol {
     var urlSession: URLSession { get }
-    func fetchKanjiInformation(_ kanji: Character) async throws -> KanjiAPIObject
+    func fetchKanjiInformation(_ kanji: String) async throws -> KanjiAPIObject
 }
 
 final class KanjiDataProvider: KanjiDataProviderProtocol {
@@ -21,11 +21,11 @@ final class KanjiDataProvider: KanjiDataProviderProtocol {
         self.urlSession = urlSession
     }
     
-    func fetchKanjiInformation(_ kanji: Character) async throws -> KanjiAPIObject {
+    func fetchKanjiInformation(_ kanji: String) async throws -> KanjiAPIObject {
         guard let kanjiBaseURL else {
             throw NetworkingError.missingConfig
         }
-        let kanjiURLString = kanjiBaseURL + String(kanji)
+        let kanjiURLString = kanjiBaseURL + kanji
         
         print(kanjiURLString)
         
