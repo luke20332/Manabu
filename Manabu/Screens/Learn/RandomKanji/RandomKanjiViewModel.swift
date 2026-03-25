@@ -1,0 +1,32 @@
+//
+//  RandomKanjiViewModel.swift
+//  Manabu
+//
+//  Created by Luke on 25/03/2026.
+//
+
+protocol RandomKanjiViewModelProtocol {
+    var dataProvider: KanjiDataProviderProtocol { get set }
+    
+    func getRandomCharacter() -> Character
+    func fetchCharacterInformation(character: Character) async throws -> KanjiInformation
+}
+
+final class RandomKanjiViewModel: RandomKanjiViewModelProtocol {
+    var dataProvider: KanjiDataProviderProtocol
+    
+    init(dataProvider: KanjiDataProviderProtocol = KanjiDataProvider()) {
+        self.dataProvider = dataProvider
+    }
+    
+    func getRandomCharacter() -> Character {
+        let start: UInt32 = 0x4E00
+        let end: UInt32 = 0x9FFF
+        let randomCodePoint = UInt32.random(in: start...end)
+        return Character(UnicodeScalar(randomCodePoint)!)
+    }
+    
+    func fetchCharacterInformation(character: Character) async throws -> KanjiInformation {
+        return try await dataProvider.fetchKanjiInformation(character).toModel()
+    }
+}

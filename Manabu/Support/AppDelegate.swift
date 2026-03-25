@@ -124,6 +124,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 charactersSeen: 0,
                 totalCharacters: 46,
                 event: .katakanaFlashCardsTapped
+            ),
+            Syllabary(
+                title: "Random Kanji",
+                image: "愛",
+                charactersSeen: 0,
+                totalCharacters: 2136,
+                event: .randomKanjiTapped
             )
         ]
         

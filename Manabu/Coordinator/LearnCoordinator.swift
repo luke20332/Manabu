@@ -36,6 +36,8 @@ class LearnCoordinator: Coordinator {
             learnHiragana()
         case .katakanaFlashCardsTapped:
             learnKatakana()
+        case .randomKanjiTapped:
+            randomKanji()
         case .listenTapped:
             break
         case .drawTapped:
@@ -65,5 +67,12 @@ private extension LearnCoordinator {
         learnKatakanaViewController.coordinator = self
         
         navigationController?.pushViewController(learnKatakanaViewController, animated: true)
+    }
+    
+    func randomKanji() {
+        var randomKanjiViewController: UIViewController & Coordinating = RandomKanjiViewController(viewModel: RandomKanjiViewModel(dataProvider: KanjiDataProvider()))
+        randomKanjiViewController.coordinator = self
+        
+        navigationController?.pushViewController(randomKanjiViewController, animated: true)
     }
 }

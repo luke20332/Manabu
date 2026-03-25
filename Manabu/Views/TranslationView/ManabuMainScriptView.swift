@@ -22,6 +22,11 @@ class ManabuMainScriptView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func set(hiragana: String, kanji: String) {
+        hiraganaText.text = hiragana
+        kanjiText.text = kanji
+    }
+    
     private func configure() {
         addSubview(stackView)
         configureStackView()

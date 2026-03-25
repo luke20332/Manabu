@@ -32,6 +32,8 @@ class LearnViewModel: LearnViewModelProtocol {
             return Array(katakanaDict.keys)
         case .romanji:
             return []
+        case .kanji:
+            return []
         }
     }()
     

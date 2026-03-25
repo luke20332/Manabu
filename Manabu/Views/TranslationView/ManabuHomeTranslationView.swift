@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class ManabuHomeTranslationView: UIView {
-    private let mainTextView: UIView = ManabuMainScriptView()
-    private let secondaryTextView: UIView = ManabuTranslationInfoView()
+    private let mainTextView = ManabuMainScriptView()
+    private let secondaryTextView = ManabuTranslationInfoView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +19,11 @@ class ManabuHomeTranslationView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    public func set(hiraganaTranslation: String, kanji: String, definitions: [String], pronounciation: String) {
+        mainTextView.set(hiragana: hiraganaTranslation, kanji: kanji)
+        secondaryTextView.set(pronounciation: pronounciation, meanings: definitions)
     }
     
     private func configure() {

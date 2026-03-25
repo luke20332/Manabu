@@ -23,6 +23,11 @@ class ManabuTranslationInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func set(pronounciation: String, meanings: [String]) {
+        pronounciationLabel.text = pronounciation
+        translationOne.text = meanings.first
+    }
+    
     private func configure() {
         addSubview(stackView)
         configureStackView()

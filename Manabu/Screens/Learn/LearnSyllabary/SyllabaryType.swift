@@ -11,4 +11,5 @@ enum SyllabaryType: String {
     case hiragana
     case katakana
     case romanji
+    case kanji
 }

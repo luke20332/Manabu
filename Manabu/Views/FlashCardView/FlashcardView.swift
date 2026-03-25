@@ -45,6 +45,8 @@ class FlashcardView: UIView {
             }
         case .romanji:
             print("XXX ROMANJI")
+        case .kanji:
+            print("XXX kanji")
         }
         
         textLabel.text = character
@@ -73,7 +75,6 @@ class FlashcardView: UIView {
         textLabel.backgroundColor = ColorPalette.paper
         textLabel.textAlignment = .center
         textLabel.font = UIFont.systemFont(ofSize: 100, weight: .bold)
-
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(reverse))
         

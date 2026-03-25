@@ -38,6 +38,7 @@ enum PlayEvent: String, CoordinatorEvent {
 enum LearnEvent: String, CoordinatorEvent {
     case hiraganaFlashCardsTapped
     case katakanaFlashCardsTapped
+    case randomKanjiTapped
     case listenTapped
     case drawTapped
 }
