@@ -13,7 +13,7 @@ class ManabuTranslationInfoView: UIView {
     private let pronounciationLabel = UILabel()
     private let translationOne = UILabel()
     private let translationTwo = UILabel()
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -25,7 +25,15 @@ class ManabuTranslationInfoView: UIView {
     
     public func set(pronounciation: String, meanings: [String]) {
         pronounciationLabel.text = pronounciation
-        translationOne.text = meanings.first
+        if let firstDefinition = meanings[safe: 0] {
+            translationOne.text = "1: \(firstDefinition)"
+            
+            if let secondDefinition = meanings[safe: 1] {
+                translationTwo.text = "2: \(secondDefinition)"
+            }
+        } else {
+            return
+        }
     }
     
     private func configure() {

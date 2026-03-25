@@ -14,6 +14,8 @@ class RandomKanjiViewController: UIViewController, Coordinating {
     
     private var flashcardView = FlashcardView(syllabary: .kanji)
     private var translationView = ManabuHomeTranslationView()
+    private var randomButton = ManabuTextButton()
+    
     private var character: String {
         viewModel.getRandomCharacter()
     }
@@ -45,15 +47,15 @@ class RandomKanjiViewController: UIViewController, Coordinating {
         view.backgroundColor = ColorPalette.backgroundColor
         view.addSubview(flashcardView)
         view.addSubview(translationView)
+        view.addSubview(randomButton)
         
         configureFlashcardView()
         configureTranslationView()
-        
+        configureRandomButtonView()
     }
     
     private func configureFlashcardView() {
         flashcardView.translatesAutoresizingMaskIntoConstraints = false
-//        flashcardView.set(String(character))
         
         NSLayoutConstraint.activate([
             flashcardView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
@@ -76,6 +78,26 @@ class RandomKanjiViewController: UIViewController, Coordinating {
         ])
     }
     
+    private func configureRandomButtonView() {
+        randomButton.translatesAutoresizingMaskIntoConstraints = false
+        randomButton.layer.cornerRadius = 10
+        
+        randomButton.set(
+            title: "Random",
+            color: .lightGray,
+            fontSize: 40,
+            systemImageName: nil
+        )
+        
+        randomButton.addTarget(self, action: #selector(randomButtonTapped), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            randomButton.topAnchor.constraint(equalTo: translationView.bottomAnchor, constant: 50),
+            randomButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            randomButton.heightAnchor.constraint(equalToConstant: 80)
+        ])
+    }
+    
     private func bindViewModel() {
         Task {
             let character = viewModel.getRandomCharacter()
@@ -86,15 +108,21 @@ class RandomKanjiViewController: UIViewController, Coordinating {
                 await MainActor.run {
                     flashcardView.set(character)
                     translationView.set(
-                        hiraganaTranslation: character,
+                        hiraganaTranslation: characterInformation.onReadings.first!,
                         kanji: characterInformation.kanji,
                         definitions: characterInformation.meanings,
-                        pronounciation: characterInformation.heisig ?? "?"
+                        pronounciation: characterInformation.heisig ?? "?",
                     )
                 }
             } catch let error {
                 print("XXX error \(error) ")
             }
         }
+    }
+}
+
+private extension RandomKanjiViewController {
+    @objc func randomButtonTapped() {
+        bindViewModel()
     }
 }

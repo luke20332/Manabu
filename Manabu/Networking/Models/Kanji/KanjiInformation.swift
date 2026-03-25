@@ -11,4 +11,5 @@ struct KanjiInformation {
     let kanji: String
     let heisig: String?
     let meanings: [String]
+    let onReadings: [String]
 }

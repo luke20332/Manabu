@@ -44,9 +44,9 @@ class FlashcardView: UIView {
                 currentCharacter?.english = reverseCharacter
             }
         case .romanji:
-            print("XXX ROMANJI")
+            print()
         case .kanji:
-            print("XXX kanji")
+            print()
         }
         
         textLabel.text = character

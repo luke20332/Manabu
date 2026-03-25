@@ -27,8 +27,6 @@ final class KanjiDataProvider: KanjiDataProviderProtocol {
         }
         let kanjiURLString = kanjiBaseURL + kanji
         
-        print(kanjiURLString)
-        
         let kanjiURL = URL(string: kanjiURLString)
         
         guard let kanjiURL else {
