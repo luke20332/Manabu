@@ -5,11 +5,15 @@
 //  Created by Luke on 25/03/2026.
 //
 
+import Foundation
+
 protocol RandomKanjiViewModelProtocol {
     var dataProvider: KanjiDataProviderProtocol { get set }
     
     func getRandomCharacter() -> String
     func fetchCharacterInformation(character: String) async throws -> KanjiInformation
+    
+    func translate(_ hiragana: String) -> String?
 }
 
 final class RandomKanjiViewModel: RandomKanjiViewModelProtocol {
@@ -32,5 +36,10 @@ final class RandomKanjiViewModel: RandomKanjiViewModelProtocol {
     
     func fetchCharacterInformation(character: String) async throws -> KanjiInformation {
         return try await dataProvider.fetchKanjiInformation(character).toModel()
+    }
+    
+    func translate(_ hiragana: String) -> String? {
+        hiragana.applyingTransform(.hiraganaToKatakana, reverse: false)
+            .flatMap { $0.applyingTransform(.latinToKatakana, reverse: true) }
     }
 }

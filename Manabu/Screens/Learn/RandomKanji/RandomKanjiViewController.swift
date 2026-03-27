@@ -105,13 +105,19 @@ class RandomKanjiViewController: UIViewController, Coordinating {
             do {
                 let characterInformation = try await viewModel.fetchCharacterInformation(character: character)
                 
+                guard let hiragana = characterInformation.onReadings.first else {
+                    //bindViewModel()
+                    print("This should not happen")
+                    return
+                }
+                
                 await MainActor.run {
                     flashcardView.set(character)
                     translationView.set(
-                        hiraganaTranslation: characterInformation.onReadings.first!,
+                        hiraganaTranslation: hiragana,
                         kanji: characterInformation.kanji,
                         definitions: characterInformation.meanings,
-                        pronounciation: characterInformation.heisig ?? "?",
+                        pronounciation: viewModel.translate(hiragana) ?? "No pronounciation available"
                     )
                 }
             } catch let error {
