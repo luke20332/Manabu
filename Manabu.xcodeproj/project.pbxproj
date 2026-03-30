@@ -34,8 +34,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Screens/Learn/LearnSyllabary/LearnViewModelTests.swift,
 			);
 			target = A303F7872F1E48110083DC65 /* Manabu */;
+		};
+		A3EAA6512F76ABDC004AEFC5 /* Exceptions for "Manabu" folder in "ManabuTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Screens/Learn/LearnSyllabary/LearnViewModelTests.swift,
+			);
+			target = A303F7A02F1E48130083DC65 /* ManabuTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -44,6 +52,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				A303F8742F1E9DC50083DC65 /* Exceptions for "Manabu" folder in "Manabu" target */,
+				A3EAA6512F76ABDC004AEFC5 /* Exceptions for "Manabu" folder in "ManabuTests" target */,
 			);
 			path = Manabu;
 			sourceTree = "<group>";

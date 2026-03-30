@@ -97,7 +97,7 @@ class LearnViewModel: LearnViewModelProtocol {
         syllabaryEntity = entity
     }
     
-    func incrementCharactersSeen() throws {
+    func incrementCharactersSeen() {
         currentCharactersSeen += 1
         updateCharactersSeen.send(currentCharactersSeen)
     }
