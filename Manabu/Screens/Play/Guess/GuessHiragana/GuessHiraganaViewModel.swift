@@ -42,7 +42,6 @@ final class GuessHiraganaViewModel: GuessViewModelProtocol {
         updateHighScore
             .sink { _ in
             } receiveValue: { [weak self] result in
-                print("sink receive highscore", result)
                 self?.highScore = result
             }.store(in: &subscriptions)
     }

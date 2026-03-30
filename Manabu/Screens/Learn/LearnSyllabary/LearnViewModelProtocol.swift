@@ -16,6 +16,6 @@ protocol LearnViewModelProtocol {
     var characters: [String] { get set }
     
     func fetchSyllabaryEntity() throws
-    func incrementCharactersSeen() throws
+    func incrementCharactersSeen()
     func save() throws
 }
